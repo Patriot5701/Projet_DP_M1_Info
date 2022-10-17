@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+C:\Users\cleme\Documents\Github\Projet-DP-M1-Informatique\.metadata\.plugins\org.eclipse.jdt.core
+3092529779.index
+1865797976.index
+3800027070.index
+752023213.index

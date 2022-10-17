@@ -1,0 +1,20 @@
+package musique;
+
+/**
+ * classe "fantôme" instanciée lorsque la création de l'objet son échoue. 
+ * Cela sert à rendre l'algo de diffusion homogène et à éviter que l'application ne soit bloquée dans le cas où le son n'est pas disponible
+ * 
+ * */
+public class SonLongFantome extends SonLong
+{
+
+public SonLongFantome()
+{
+super(new SonBref[1]);
+//this.sons = new SonBref[1];
+this.sons[0] = new SonBrefFantome();
+}
+
+
+
+}

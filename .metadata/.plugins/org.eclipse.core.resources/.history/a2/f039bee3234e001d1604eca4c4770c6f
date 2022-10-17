@@ -1,0 +1,300 @@
+package musique.javax;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import musique.SonBref;
+import musique.SonBrefFantome;
+import musique.javax.brouillon.VBaPitch;
+
+/**
+ * contient, sous forme de tableau, un fragment de fichier audio  prêt à être diffusé sur les hauts-parleurs
+ * la méthode run définit comment est diffusé le son grâce aux paramètres (volume, balance, pitch)
+ * 
+ * la méthode run factorise toutes les initialisations nécessaires à la diffusion du son.
+ * la méthode run1, abstraite à ce niveau, contient ce qui est spécifique à la diffusion du son
+ * 
+ *  Important : 
+ *  
+ *  1) on doit toujours traiter un nombre entier de frames (cf. définition du format d'un fichier audio)
+ *  
+ *  2) Le paquet d'octets envoyé sur les haut-parleurs (cf. méthode SourceDataLine.write) doit toujours contenir un nombre de frames >= TAILLE_BUFFER_LIGNE
+ *  sinon on entend des craquements ou des cliquetis désagréables 
+ *  
+ * */
+public abstract class SonJavax implements Runnable
+{
+public static final int TAILLE_BUFFER_LIGNE = /*2400;*/ 4800;    /* doit corresponde à un nombre entier de frames. 
+                                                             si la fréquence d'échantillonnage est de 48000 Hz, cette constante correspond à 0.05 seconde
+                                                             si la fréquence d'échantillonnage est de 44100 Hz cela correpond à un peu plus de 0.05 seconde */
+SourceDataLine ligne;           // ligne sur laquelle est diffusé le son
+byte tampon[];                  // contient le fragment de fichier audio à diffuser. contient un nombre entier de frames à  jouer
+AudioFormat audioFormat;        // détails du format audio du fichier audio dont on extrait le fragment 
+
+String nomFichier = "non renseigné";              /* nom du fichier avec l'extension .wav */
+int débutExtrait = -1, finExtrait = -1;   /* en centièmes de secondes */
+
+public void initInfos( String nomFichier, int débutExtrait, int finExtrait)
+{
+this.nomFichier = nomFichier; this.débutExtrait = débutExtrait; this.finExtrait = finExtrait;
+}
+
+public String getNomFichier()
+{
+return this.nomFichier;
+}
+
+/**
+ * volume : tel que 0.0 <= volume <= 1.0
+ * balance : tel que -1.0 <= balance <= 1.0. -1.0 <---> tout sur l'enceinte gauche, 1.0 <---> tout sur l'enceinte droite
+ * 
+ * pich, en anglais, représente le niveau d'aigu (ou la hauteur d'un son)
+ * 
+ * on doit avoir 0 < coeffPitch. 
+ * pour coeffPitch == 1, le son est joué à la même hauteur que lors de l'enregistrement,
+ * si coeffPitch > 1, le son joué est plus aigu que l'original 
+ * si 0 < coeffPitch < 1, le son joué est plus grave que l'original,
+ * 
+ *  ===>>> Notez bien que ces 3 paramêtres peuvent être changés avant chaque diffusion. cf. méthode joue(,,) de la classe SonBrefJavax  
+ *  
+ *  */
+
+double volume, balance, coeffPitch;      
+
+/** petite fonction pourrie qui transforme le volume en gain.
+ * On transforme l'intervalle [0, 1/2, 1] en [gainMin, 0, gainMax]
+ * 
+ * on prend une fonction affine par morceaux
+ * 
+ * On garantit que : 
+ * 
+ * convertit(0) = gainMin
+ * convertit(0.5) = 0
+ * convertit(1) = gainMax
+ * 
+ * la fonction est affine sur [0,0.5] et sur [0.5, 1],
+ * 
+ * sur ]-inf,0] elle est constante et vaut gainMin
+ * 
+ * sur ]1,+inf[ elle est constante et vaut gainMax
+ * 
+ * */
+static double convertit(double volume, double gainMin, double gainMax)
+{
+if (volume < 0) return gainMin;
+
+double u = 2*volume-1;
+
+if (volume < 0.5) return -gainMin*u;
+
+if (volume < 1) return gainMax*u;
+
+else return gainMax;
+}
+
+/**
+ * extrait du fichier "nomFichier" un morceau de son que l'on va stocker dans le tableau tampon 
+ * @param répertoire : répertoire contenant le fichier audio nomFichier
+ * @param nomFichier : nom du fichier audio avec l'extension .wav
+ * @param débutExtrait en centièmes de secondes : début de l'extrait à charger
+ * @param finExtrait   en centièmes  de secondes : fin de l'extrait à charger
+ * @throws LineUnavailableException
+ * @throws IOException
+ * @throws UnsupportedAudioFileException
+ */
+public SonJavax( File répertoire, String nomFichier, int débutExtrait, int finExtrait) throws LineUnavailableException, IOException, UnsupportedAudioFileException 
+{
+this(AudioSystem.getAudioInputStream(new File(répertoire,nomFichier)),débutExtrait,finExtrait);
+this.initInfos(nomFichier, débutExtrait, finExtrait);
+}
+
+/**
+ * @param volume : tel que 0.0 <= volume <= 1.0
+ * @param balance : tel que -1.0 <= balance <= 1.0. -1.0 <---> tout sur l'enceinte gauche, 1.0 <---> tout sur l'enceinte droite
+ * @param coeffPitch : pich, en anglais, représente le niveau d'aigu (ou la hauteur d'un son)
+ * 
+ *      on doit avoir 0 < coeffPitch. 
+ *      pour coeffPitch == 1, le son est joué à la même hauteur que lors de l'enregistrement,
+ *      si coeffPitch > 1, le son joué est plus aigu que l'original 
+ *      si 0 < coeffPitch < 1, le son joué est plus grave que l'original
+ */
+public void init(AudioFormat format, byte[] tampon, double volume, double balance, double coeffPitch) throws LineUnavailableException
+{
+this.ligne = AudioSystem.getSourceDataLine(format);
+this.ligne.open(format,TAILLE_BUFFER_LIGNE);
+
+//System.err.println("ouverture de la ligne  réussie !!!");
+
+this.tampon = tampon;
+this.audioFormat = format;
+this.volume = volume;
+this.balance = balance;
+this.coeffPitch = coeffPitch;       
+}
+
+/** nécessaire à la définition d'une méthode clone(). cf. classe dérivée SonBrefJavax */
+protected SonJavax(AudioFormat format, byte [] tampon, double volume, double balance, double coeffPitch) throws LineUnavailableException
+{
+this.init(format, tampon, volume, balance, coeffPitch);
+}
+
+/**
+ * @param débutExtrait : en centièmes de seconde
+ * @param finExtrait : en centièmes de seconde
+ * @throws LineUnavailableException 
+ * 
+ * construit l'extrait du fichier audio compris entre les instants début et fin.
+ * Il faut que début < fin
+ * 
+ * 
+ * Rappelons que dans un fichier audio, il faut toujours lire un nombre entier de frames !
+ * @throws IOException 
+ * 
+ * */
+protected SonJavax(AudioInputStream fichierAudio, int débutExtrait, int finExtrait) throws LineUnavailableException, IOException
+{
+AudioFormat format;
+
+format = fichierAudio.getFormat();
+
+System.err.println(" format audio : "+ format);
+
+System.out.println(" format du fichier son : "+format);
+System.out.println(" nombre de canaux : "+format.getChannels());
+System.out.println(" nombre de frames par seconde : "+format.getFrameRate());
+System.out.println(" taille d'un frame en octets : "+format.getFrameSize());
+System.out.println(" fréquence d'échantillonnage : "+format.getSampleRate());
+System.out.println(" taille d'un échantillon en bits : "+format.getSampleSizeInBits());
+System.out.println("format.isBigEndian() : " + format.isBigEndian());
+
+//-------------------- on calcule le nombre d'octets à extraire du fichier son ---------------------
+
+double débutSecondes = 0.01*débutExtrait;     // début du passage à extraire exprimé en secondes
+double finSecondes = 0.01*finExtrait;         // fin du passage à extraire exprimé en secondes
+
+double duréeSecondes = finSecondes-débutSecondes; // durée du passage à extraire en secondes
+
+double fréquence = format.getFrameRate(); // nombre de frames par seconde
+
+double nombreFrames = duréeSecondes*fréquence; // durée du passage à extraire exprimée en nombre de frames
+
+int m = format.getFrameSize();  // taille d'un frame en octets ou bien nombre d'octets par frame
+
+int nombreOctets = (int)nombreFrames*m; // durée du passage à extraire en octets
+
+byte [] tampon = new byte[nombreOctets];
+
+double positionDébut = débutSecondes*fréquence;   // position début exprimée en frames
+
+int positionDébutOctets = (int)positionDébut*m;
+
+fichierAudio.skip(positionDébutOctets); // on place le curseur du fichier à l'endroit où commence l'extrait
+
+fichierAudio.read(tampon);    // on copie l'extrait dans le tampon
+
+this.init(format, tampon, 0.5, 0, 1);      /* valeurs par défaut : son : au mileu, balance : au milieu et pitch inchangé */
+int tailleBufferLigne = this.ligne.getBufferSize();
+
+System.err.println("tailleBufferLigne = " + tailleBufferLigne);
+}
+
+
+/**
+ * un son doit nécessairement ête diffusé dans un thread séparé sous peine de bloquer l'application jusqu'à la fin de la diffusion
+ * */
+@Override
+public void run()
+{
+FloatControl contrôleVolume = (FloatControl)ligne.getControl(FloatControl.Type.MASTER_GAIN);  // pour régler le volume de diffusion du bruit
+
+//System.out.println("contrôle Master Gain avant setValue= " + contrôle);
+
+double gainMin = contrôleVolume.getMinimum();
+double gainMax = contrôleVolume.getMaximum();
+
+//double [] t = conversionGain( gainMin, gainMax);
+ 
+
+//System.out.println("contrôle Master Gain après setValue= " + contrôle);
+
+FloatControl contrôleBalance;
+try
+    {
+    contrôleBalance = (FloatControl)ligne.getControl(FloatControl.Type.BALANCE);  // pour régler la balance HP gauche - HP droit
+    }
+
+catch (IllegalArgumentException e)
+    {
+    System.err.println("réglage \"balance\" gauche - droite non disponible pour le fichier son utilisé : enregistrement non stéréo ?");
+    contrôleBalance = new FloatControlFantôme();
+    }
+
+FloatControl contrôlePitch;
+try
+{
+contrôlePitch = (FloatControl)ligne.getControl(FloatControl.Type.SAMPLE_RATE); /* pour régler la vitesse de diffusion et donc la hauteur*/
+}
+
+catch (IllegalArgumentException e)
+{
+//System.err.println("réglage sample rate non disponible pour la ligne utilisée");
+contrôlePitch = new FloatControlFantôme();
+}
+//System.out.println("contrôle Balance après setValue= " + contrôle);
+
+//System.out.println("la ligne a démarré");
+if (this.tampon == null) 
+   throw new ArrayIndexOutOfBoundsException("le tampon n'a pas été créé");
+
+this.ligne.start();
+
+run1(contrôleVolume,contrôleBalance,contrôlePitch,gainMin,gainMax);              
+
+this.ligne.stop();  
+}                               // run
+
+/**
+ * réalise le détail de la diffusion. cf. classe SonBrefJavax par exemple 
+ * 
+ * Les paramêtres de type FloatControl servent à paramétrer le volume, la balnce et le pitch
+ * 
+ * volume, balance et coeffPitch ne sont pas des attributs intrinsèques de la classe. Ils peuvent être mis à jour par les classes dérivées lors de 
+ * chaque diffusion. cf. classe SonBrefJavax
+ * 
+ * */
+protected abstract void run1(FloatControl contrôleVolume, FloatControl contrôleBalance, FloatControl contrôlePitch, double gainMin, double gainMax);
+
+/**
+ * pour lancer, dans un thread séparé, la diffusion du son
+ * 
+ * 
+ * */
+public void start()
+{
+Thread thread = new Thread(this);
+thread.start();
+}
+
+@Override
+public String toString()
+{
+return "SonJavax [\n taille tampon="
+        + this.tampon.length + ",\n audioFormat=" + this.audioFormat
+        + ",\n nomFichier=" + this.nomFichier + ", débutExtrait="
+        + this.débutExtrait + ", finExtrait=" + this.finExtrait + ", volume="
+        + this.volume + ", balance=" + this.balance + ", coeffPitch="
+        + this.coeffPitch + "\n]";
+}
+
+
+}   // classe SonJavax

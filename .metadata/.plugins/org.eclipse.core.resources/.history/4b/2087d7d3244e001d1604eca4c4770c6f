@@ -1,0 +1,29 @@
+package outilsvues.dessinateurs;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+/**
+ * Opérations élémentaires de dessin
+ * 
+ * 1) La classe DessinateurSimple qui en dérive contient les opérations basiques de dessin
+ * 
+ * 2) La classe DecorateurDessinateur (DP Décorateur) qui en dérive gère l'épaisseur du trait et la couleur et les autres propriétés
+ * 
+ * Mise en oeuvre du DP Decorator
+ * 
+ * 
+ * */
+public interface Dessinateur
+{
+public void dessineSegment( Point début, Point fin);
+
+public void dessineCercle(  Point centre, int  rayon);
+
+public void dessineDisque( Point centre, int rayon);
+
+public void dessineMessage(String message, Point position);
+
+public Graphics2D getGraphics2D();
+
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="musique.SonLongFantome"/>
+    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="musique.javax.SonLongJavax"/>
+    <fullyQualifiedTypeName name="exodecorateur_angryballs.maladroit.modele.BilleMvtRURebond"/>
+    <fullyQualifiedTypeName name="exodecorateur_angryballs.maladroit.modele.BilleMvtPesanteurFrottementRebond"/>
+    <fullyQualifiedTypeName name="exodecorateur_angryballs.maladroit.modele.BilleMvtNewtonFrottementRebond"/>
+    <fullyQualifiedTypeName name="exodecorateur_angryballs.maladroit.modele.BilleHurlanteMvtNewtonArret"/>
+    <fullyQualifiedTypeName name="exodecorateur_angryballs.maladroit.modele.BilleMvtRUPasseMurailles"/>
+    <fullyQualifiedTypeName name="outilsvues.EcouteurTerminaison"/>
+    <fullyQualifiedTypeName name="modele.Bille"/>
+    <fullyQualifiedTypeName name="outilsvues.Outils"/>
+    <fullyQualifiedTypeName name="complexes.Complexe"/>
+    <fullyQualifiedTypeName name="junit.framework.TestCase"/>
+</qualifiedTypeNameHistroy>

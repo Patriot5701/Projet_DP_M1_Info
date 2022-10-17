@@ -1,0 +1,48 @@
+package musique;
+
+/**
+ * classe "fantôme" instanciée lorsque la création de l'objet son échoue. 
+ * Cela sert à rendre l'algo de diffusion homogène et à éviter que l'application ne soit bloquée dans le cas où le son n'est pas disponible
+ * 
+ * */
+public class SonBrefFantome implements SonBref
+{
+
+  
+
+    @Override
+    public String getNom()
+    {
+    return "le son bref n'a pas pu être créé";
+    }
+
+    @Override
+    public void joue(double volume, double balance)
+    {
+    // TODO Auto-generated method stub
+    
+    }
+
+    /*@Override
+    public void joue()
+    {
+    // TODO Auto-generated method stub
+    
+    }*/
+
+    
+    public SonBref clone() 
+    {
+    return new SonBrefFantome();
+    }
+
+    @Override
+    public void joue(double volume, double balance, double coeffPitch)
+    {
+    // TODO Auto-generated method stub
+    
+    }
+
+
+
+}

@@ -1,0 +1,58 @@
+package outilsvues.dessinateurs;
+
+import java.awt.Color;
+
+import parseurs.ParseurCouleurAnglais;
+import parseurs.ParseurCouleurRGB;
+import corgenerique.GParseurCOR;
+
+/**
+ * permet de définir la couleur des dessins
+ * 
+ * */
+public class DessinateurCouleur extends DecorateurDessinateur
+{
+static GParseurCOR<Color,String> parseurCouleur = null;
+
+static 
+{
+parseurCouleur = new ParseurCouleurAnglais(parseurCouleur);
+parseurCouleur = new ParseurCouleurRGB(parseurCouleur);
+}
+
+private Color couleur, couleurAvant;
+
+
+/**
+ * Tous les dessins effectués par this seront effectués avec la couleur spécifiée
+ * 
+ * 
+ * */
+public DessinateurCouleur(Dessinateur suivant, Color couleur)
+{
+super(suivant);
+this.couleur = couleur;
+}
+
+public DessinateurCouleur(Dessinateur suivant, String couleur)
+{
+this(suivant,parseurCouleur.parse(couleur));
+}
+
+@Override
+public void avant()
+{
+this.couleurAvant = this.getGraphics2D().getColor();
+this.getGraphics2D().setColor(this.couleur);
+}
+
+@Override
+public void après()
+{
+this.getGraphics2D().setColor(this.couleurAvant);
+}
+
+
+
+
+}
