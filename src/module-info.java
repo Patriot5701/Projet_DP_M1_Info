@@ -5,7 +5,6 @@
  * @author cleme
  *
  */
-module Projet_DP_M1_Info_AngryBalls {
+module Projet_DP_M1_Info {
 	requires java.desktop;
-	requires junit;
 }
