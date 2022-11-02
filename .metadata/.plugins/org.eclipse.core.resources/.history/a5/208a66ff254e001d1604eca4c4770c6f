@@ -1,7 +1,0 @@
-package complexes;
-
-import junit.framework.TestCase;
-
-public class Complexe2Test_02 extends TestCase {
-
-}
