@@ -15,7 +15,7 @@ import mesmaths.mecanique.MecaniquePoint;
  *  
  *  */
 
-public class OutilsBille
+public class OutilsBilles
 {
 	/**
 	 * @param billes est la liste de TOUTES les billes en mouvement
@@ -59,7 +59,7 @@ public class OutilsBille
 	{
 		//--- on r�cup�re d'abord dans autresBilles toutes les billes sauf cetteBille ----
 
-		Vector<Bille> autresBilles = OutilsBille.autresBilles(cetteBille, billes);
+		Vector<Bille> autresBilles = OutilsBilles.autresBilles(cetteBille, billes);
 
 		//--- on cherche a present la 1ere des autres billes avec laquelle cetteBille est en collision ---------------------
 		//-------------- on suppose qu'il ne peut y avoir de collision qui implique plus de deux billes a la fois ---------------
@@ -95,7 +95,7 @@ public class OutilsBille
 
 		//--- on r�cup�re d'abord dans autresBilles toutes les billes sauf celle-ci ----
 
-		Vector<Bille> autresBilles = OutilsBille.autresBilles(cetteBille, billes);
+		Vector<Bille> autresBilles = OutilsBilles.autresBilles(cetteBille, billes);
 
 		//-------------- � present on recupere les masses et les positions des autres billes ------------------
 		int i;

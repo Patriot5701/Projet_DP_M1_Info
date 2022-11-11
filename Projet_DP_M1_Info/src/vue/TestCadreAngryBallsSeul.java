@@ -8,8 +8,8 @@ import java.util.Vector;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import maladroit.OutilsConfigurationBilleHurlante;
-import modele.Bille;
+import controleur.OutilsConfigurationBilleHurlante;
+import modele_maladroit.Bille;
 import musique.SonBref;
 import musique.SonBrefFantome;
 import musique.SonLong;

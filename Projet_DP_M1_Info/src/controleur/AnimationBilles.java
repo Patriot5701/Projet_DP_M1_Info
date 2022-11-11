@@ -1,7 +1,8 @@
-package maladroit;
+package controleur;
 
 import java.util.Vector;
-import modele.Bille;
+
+import modele_maladroit.Bille;
 import vue.VueBillard;
 
 /**

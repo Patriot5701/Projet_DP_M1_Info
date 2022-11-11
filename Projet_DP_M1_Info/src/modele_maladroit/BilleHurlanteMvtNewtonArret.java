@@ -1,4 +1,4 @@
-package modele;
+package modele_maladroit;
 
 import java.awt.Color;
 import java.awt.event.ItemEvent;

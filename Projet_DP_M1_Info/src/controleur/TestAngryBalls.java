@@ -1,16 +1,16 @@
-package maladroit;
+package controleur;
 
 import java.awt.Color;
 import java.io.File;
 import java.util.Vector;
 
-import modele.BilleHurlanteMvtNewtonArret;
-import modele.BilleMvtNewtonFrottementRebond;
-import modele.BilleMvtPesanteurFrottementRebond;
-import modele.BilleMvtRUPasseMurailles;
-import modele.BilleMvtRURebond;
 import mesmaths.geometrie.base.Vecteur;
-import modele.Bille;
+import modele_maladroit.Bille;
+import modele_maladroit.BilleHurlanteMvtNewtonArret;
+import modele_maladroit.BilleMvtNewtonFrottementRebond;
+import modele_maladroit.BilleMvtPesanteurFrottementRebond;
+import modele_maladroit.BilleMvtRUPasseMurailles;
+import modele_maladroit.BilleMvtRURebond;
 import musique.SonLong;
 import vue.CadreAngryBalls;
 import vue.VueBillard;

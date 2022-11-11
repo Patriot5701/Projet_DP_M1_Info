@@ -1,12 +1,12 @@
-package maladroit;
+package controleur;
 
 import java.awt.Color;
 import java.io.IOException;
 import java.util.Vector;
 
-import modele.BilleMvtRUPasseMurailles;
 import mesmaths.geometrie.base.Vecteur;
-import modele.Bille;
+import modele_maladroit.Bille;
+import modele_maladroit.BilleMvtRUPasseMurailles;
 import vue.VueBillard;
 
 public class TestAnimationBilles

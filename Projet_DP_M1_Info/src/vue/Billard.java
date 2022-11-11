@@ -4,7 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.util.Vector;
 
-import modele.Bille;
+import modele_maladroit.Bille;
 
 
 /**

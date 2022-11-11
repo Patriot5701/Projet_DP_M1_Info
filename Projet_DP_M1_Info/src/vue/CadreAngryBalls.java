@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
-import modele.Bille;
+import modele_maladroit.Bille;
 import musique.SonLong;
 import outilsvues.EcouteurTerminaison;
 import outilsvues.Outils;

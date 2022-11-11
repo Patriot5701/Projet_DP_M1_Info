@@ -16,4 +16,5 @@
     <fullyQualifiedTypeName name="outilsvues.Outils"/>
     <fullyQualifiedTypeName name="complexes.Complexe"/>
     <fullyQualifiedTypeName name="junit.framework.TestCase"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

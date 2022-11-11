@@ -1,4 +1,4 @@
-package maladroit;
+package controleur;
 
 import vue.VueBillard;
 
