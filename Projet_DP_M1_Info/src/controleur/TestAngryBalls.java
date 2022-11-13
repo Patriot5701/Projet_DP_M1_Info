@@ -35,8 +35,8 @@ public class TestAngryBalls
 
 		//TODO Changer le path
 		File repertoireSon = new File(file.getAbsoluteFile(),
-				"exodecorateur_angryballs"+File.separatorChar+
-				"maladroit"+File.separatorChar+"bruits");
+				"src"+File.separatorChar+"bruits");
+		System.out.println("repertoire son = " + repertoireSon);
 
 		//-------------------- chargement des sons pour les hurlements --------------------------------------
 
