@@ -54,15 +54,9 @@ public abstract class Bille {
     }
 	//TODO awt
 	
-	public String toString(){
-		String str = "centre = " + this.getPosition() + " rayon = "+ this.getRayon() +  " vitesse = " + this.getVitesse() + " acceleration = " + this.getAcceleration() + " couleur = " + this.getColor() + "clef = " + this.getClef();
-		
-		String ajouts = this.toStringInfosSupps();
-		
-		return str + " " + ajouts;
-    }
+	public abstract String toString();
 	
-	public abstract String toStringInfosSupps();
+	public abstract double getMasse();
 
 
 }

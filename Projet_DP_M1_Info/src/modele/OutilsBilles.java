@@ -71,8 +71,8 @@ public class OutilsBilles
 		for ( i = 0 ; i < autresBilles.size(); ++i)
 		{
 			billeCourante = autresBilles.get(i);
-			if (Collisions.CollisionBilleBille(    cetteBille.getPosition(),    cetteBille.getRayon(),    cetteBille.getVitesse(),    cetteBille.masse(), 
-					billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.masse()))
+			if (Collisions.CollisionBilleBille(    cetteBille.getPosition(),    cetteBille.getRayon(),    cetteBille.getVitesse(),    cetteBille.getMasse(), 
+					billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.getMasse()))
 				return true; 
 		}
 		return false;
@@ -109,7 +109,7 @@ public class OutilsBilles
 		for ( i = 0; i < d; ++i)
 		{
 			billeCourante = autresBilles.get(i);
-			masses[i] = billeCourante.masse();
+			masses[i] = billeCourante.getMasse();
 			C[i] = billeCourante.getPosition();
 		}
 

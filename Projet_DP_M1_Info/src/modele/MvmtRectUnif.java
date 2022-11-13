@@ -40,9 +40,9 @@ public class MvmtRectUnif extends DecorateurBille{
 	}
 
 	@Override
-	public String toStringInfosSupps() {
-		// TODO Auto-generated method stub
-		return null;
+	public String toString() {
+		String str = billeDecoree.toString();
+		return str + ", Comportement : mouvement rectiligne uniforme";
 	}
 
 }

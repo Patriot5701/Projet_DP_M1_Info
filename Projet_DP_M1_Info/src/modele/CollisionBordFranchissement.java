@@ -27,8 +27,8 @@ public class CollisionBordFranchissement extends DecorateurBille{
 	}
 
 	@Override
-	public String toStringInfosSupps() {
-		String str = billeDecoree.toStringInfosSupps();
+	public String toString() {
+		String str = billeDecoree.toString();
 		return str + ", Comportement : franchissement des bords";
 	}
 

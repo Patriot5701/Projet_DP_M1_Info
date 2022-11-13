@@ -68,6 +68,10 @@ public class BilleSimple extends Bille{
 	}
 	public double masse() {return ro*Geop.volumeSphere(rayon);}
 	
+	public double getMasse() {
+		return masse();
+	}
+	
 	/**
 	 * mise a jour de position et vitesse et+deltaT a partir de position et vitesse a l'instant t
 	 * 
@@ -123,13 +127,10 @@ public class BilleSimple extends Bille{
 	
 	
 	public String toString(){
-		return "centre = " + position + " rayon = "+rayon +  " vitesse = " + vitesse + " acceleration = " + acceleration + " couleur = " + couleur + "clef = " + clef;
+		String str = "centre = " + this.getPosition() + " rayon = "+ this.getRayon() +  " vitesse = " + this.getVitesse() + " acceleration = " + this.getAcceleration() + " couleur = " + this.getColor() + "clef = " + this.getClef();
+		
+		return str;
     }
 
-	@Override
-	public String toStringInfosSupps() {
-		// TODO Auto-generated method stub
-		return "";
-	}
 
 }

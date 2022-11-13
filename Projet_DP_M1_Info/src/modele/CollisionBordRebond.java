@@ -26,8 +26,8 @@ public class CollisionBordRebond extends DecorateurBille{
 	}
 
 	@Override
-	public String toStringInfosSupps() {
-		String str = billeDecoree.toStringInfosSupps();
+	public String toString() {
+		String str = billeDecoree.toString();
 		return str + ", Comportement : rebondit sur les bords";
 	}
 

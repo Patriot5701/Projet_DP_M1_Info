@@ -28,8 +28,8 @@ public class CollisionBordBlocage extends DecorateurBille{
 	}
 
 	@Override
-	public String toStringInfosSupps() {
-		String str = billeDecoree.toStringInfosSupps();
+	public String toString() {
+		String str = billeDecoree.toString();
 		return str + ", Comportement : bloquée par les bords";
 	}
 

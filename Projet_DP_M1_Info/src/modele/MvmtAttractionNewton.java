@@ -20,7 +20,7 @@ public class MvmtAttractionNewton extends DecorateurBille{
 
 	//TODO
 	@Override
-	public String toStringInfosSupps() {
+	public String toString() {
 		// TODO Auto-generated method stub
 		return "";
 	}

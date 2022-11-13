@@ -46,4 +46,8 @@ public abstract class DecorateurBille extends Bille{
 		return this.billeDecoree.getColor();
 	}
 	
+	public double getMasse() {
+		return this.billeDecoree.getMasse();
+	}
+	
 }
