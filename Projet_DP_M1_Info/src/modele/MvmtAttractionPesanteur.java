@@ -6,7 +6,6 @@ public class MvmtAttractionPesanteur extends DecorateurBille{
 
 	public MvmtAttractionPesanteur(Bille billeDecorated) {
 		super(billeDecorated);
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)

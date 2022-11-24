@@ -8,6 +8,9 @@ public class CollisionBordBlocage extends DecorateurBille{
 
 	public CollisionBordBlocage(Bille billeDecorated) {
 		super(billeDecorated);
+		if(!ComportementMemoire.getInstance().hasAComportment()) {
+			ComportementMemoire.getInstance().setComportementCollision(this);
+		}
 	}
 
 	@Override
@@ -23,8 +26,11 @@ public class CollisionBordBlocage extends DecorateurBille{
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
 			double hauteur) {
-		Collisions.collisionBilleContourAvecArretHorizontal(billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), abscisseCoinHautGauche, largeur);
-		Collisions.collisionBilleContourAvecArretVertical(billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), ordonneeCoinHautGauche, hauteur);
+		billeDecoree.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
+		if(ComportementMemoire.getInstance().getComportementCollision().equals(this.getClass().getName())) {
+			Collisions.collisionBilleContourAvecArretHorizontal(billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), abscisseCoinHautGauche, largeur);
+			Collisions.collisionBilleContourAvecArretVertical(billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), ordonneeCoinHautGauche, hauteur);
+		}
 	}
 
 	@Override

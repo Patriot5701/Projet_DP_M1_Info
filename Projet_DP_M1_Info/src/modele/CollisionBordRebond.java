@@ -5,8 +5,12 @@ import mesmaths.cinematique.Collisions;
 
 public class CollisionBordRebond extends DecorateurBille{
 
+	//TODO create abstract class decoCollision pour add cette condition
 	public CollisionBordRebond(Bille billeDecorated) {
 		super(billeDecorated);
+		if(!ComportementMemoire.getInstance().hasAComportment()) {
+			ComportementMemoire.getInstance().setComportementCollision(this);
+		}
 	}
 
 	@Override
@@ -22,7 +26,10 @@ public class CollisionBordRebond extends DecorateurBille{
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
 			double hauteur) {
-		Collisions.collisionBilleContourAvecRebond( billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
+		billeDecoree.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
+		if(ComportementMemoire.getInstance().getComportementCollision().equals(this.getClass().getName())) {
+			Collisions.collisionBilleContourAvecRebond( billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
+		}
 	}
 
 	@Override
