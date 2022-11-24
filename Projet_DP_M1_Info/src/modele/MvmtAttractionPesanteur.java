@@ -17,7 +17,7 @@ public class MvmtAttractionPesanteur extends DecorateurBille{
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
 		this.billeDecoree.gestionAcceleration(billes);
-		this.getAcceleration().ajoute(this.pesanteur);     // contribution de l'acceleration due a l'attraction des autres billes
+		this.getAcceleration().ajoute(this.pesanteur);     // contribution de l'acceleration due a la pesanteur
 	}
 
 	//TODO
