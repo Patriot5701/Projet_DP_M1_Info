@@ -3,14 +3,10 @@ package modele;
 import java.util.Vector;
 import mesmaths.cinematique.Collisions;
 
-public class CollisionBordRebond extends DecorateurBille{
+public class CollisionBordRebond extends DecorateurBilleCollisionBord{
 
-	//TODO create abstract class decoCollision pour add cette condition
 	public CollisionBordRebond(Bille billeDecorated) {
 		super(billeDecorated);
-		if(!ComportementMemoire.getInstance().hasAComportment()) {
-			ComportementMemoire.getInstance().setComportementCollision(this);
-		}
 	}
 
 	@Override
@@ -31,11 +27,14 @@ public class CollisionBordRebond extends DecorateurBille{
 			Collisions.collisionBilleContourAvecRebond( billeDecoree.getPosition(), billeDecoree.getRayon(), billeDecoree.getVitesse(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
 		}
 	}
-
+	
 	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : rebondit sur les bords";
+	public String toStringCptmt() {
+		if(ComportementMemoire.getInstance().getComportementCollision().equals(this.getClass().getName())) {
+			return ", Comportement : rebondit sur les bords";
+		}
+		return "";
 	}
+
 
 }

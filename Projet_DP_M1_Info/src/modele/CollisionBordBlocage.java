@@ -4,13 +4,10 @@ import java.util.Vector;
 
 import mesmaths.cinematique.Collisions;
 
-public class CollisionBordBlocage extends DecorateurBille{
+public class CollisionBordBlocage extends DecorateurBilleCollisionBord{
 
 	public CollisionBordBlocage(Bille billeDecorated) {
 		super(billeDecorated);
-		if(!ComportementMemoire.getInstance().hasAComportment()) {
-			ComportementMemoire.getInstance().setComportementCollision(this);
-		}
 	}
 
 	@Override
@@ -34,9 +31,11 @@ public class CollisionBordBlocage extends DecorateurBille{
 	}
 
 	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : bloquée par les bords";
+	public String toStringCptmt() {
+		if(ComportementMemoire.getInstance().getComportementCollision().equals(this.getClass().getName())) {
+			return ", Comportement : bloquée par les bords";
+		}
+		return "";
 	}
 
 }
