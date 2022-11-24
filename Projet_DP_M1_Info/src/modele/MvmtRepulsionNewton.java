@@ -2,10 +2,9 @@ package modele;
 
 import java.util.Vector;
 
-public class MvmtAttractionNewton extends DecorateurBille{
+public class MvmtRepulsionNewton extends DecorateurBille {
 
-	
-	public MvmtAttractionNewton(modele.Bille billeDecorated) {
+	public MvmtRepulsionNewton(Bille billeDecorated) {
 		super(billeDecorated);
 	}
 
@@ -15,14 +14,14 @@ public class MvmtAttractionNewton extends DecorateurBille{
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
 		this.billeDecoree.gestionAcceleration(billes);
-		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes));     // contribution de l'acceleration due a l'attraction des autres billes
+		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes).oppose());     // contribution de l'acceleration due a la repulsion des autres billes
 	}
 
 	//TODO
 	@Override
 	public String toString() {
 		String str = billeDecoree.toString();
-		return str + ", Comportement : attirée par les autres billes";
+		return str + ", Comportement : repousée par les autres billes";
 	}
 
 
@@ -37,4 +36,5 @@ public class MvmtAttractionNewton extends DecorateurBille{
 		billeDecoree.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
 		
 	}
+
 }

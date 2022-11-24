@@ -2,7 +2,10 @@ package modele;
 
 import java.util.Vector;
 
+import mesmaths.geometrie.base.Vecteur;
+
 public class MvmtAttractionPesanteur extends DecorateurBille{
+	Vecteur pesanteur = new Vecteur(0,0.001); // Vecteur utilisé dans TestAngryBalls
 
 	public MvmtAttractionPesanteur(Bille billeDecorated) {
 		super(billeDecorated);
@@ -14,14 +17,14 @@ public class MvmtAttractionPesanteur extends DecorateurBille{
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
 		this.billeDecoree.gestionAcceleration(billes);
-		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes));     // contribution de l'acceleration due a l'attraction des autres billes
+		this.getAcceleration().ajoute(this.pesanteur);     // contribution de l'acceleration due a l'attraction des autres billes
 	}
 
 	//TODO
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "";
+		String str = billeDecoree.toString();
+		return str + ", Comportement : attirée vers le bas";
 	}
 
 

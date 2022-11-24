@@ -17,4 +17,5 @@
     <fullyQualifiedTypeName name="complexes.Complexe"/>
     <fullyQualifiedTypeName name="junit.framework.TestCase"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="java.util.Vector"/>
 </qualifiedTypeNameHistroy>

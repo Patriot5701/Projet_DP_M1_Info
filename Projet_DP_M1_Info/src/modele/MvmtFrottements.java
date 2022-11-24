@@ -21,8 +21,8 @@ public class MvmtFrottements extends DecorateurBille{
 	//TODO
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "";
+		String str = billeDecoree.toString();
+		return str + ", Comportement : freinage dû aux frottements dans l'air ";
 	}
 
 
