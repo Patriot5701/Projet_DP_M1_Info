@@ -37,4 +37,6 @@ public class CollisionBordFranchissement extends DecorateurBilleCollisionBord{
 		return "";
 	}
 
+
+
 }

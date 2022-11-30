@@ -50,4 +50,8 @@ public abstract class DecorateurBille extends Bille{
 		return this.billeDecoree.getMasse();
 	}
 	
+	public void deplacer(double deltaT) {
+		billeDecoree.deplacer(deltaT);
+	}
+	
 }

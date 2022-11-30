@@ -57,6 +57,8 @@ public abstract class Bille {
 	public abstract String toString();
 	
 	public abstract double getMasse();
+	
+	public abstract void deplacer(double deltaT);
 
 
 }

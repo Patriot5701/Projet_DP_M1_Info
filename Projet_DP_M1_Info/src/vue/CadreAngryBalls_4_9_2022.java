@@ -3,7 +3,7 @@ package vue;
 import java.awt.*;
 import java.util.Vector;
 
-import modele_maladroit.Bille;
+import modele.Bille;
 import outilsvues.EcouteurTerminaison;
 import outilsvues.Outils;
 

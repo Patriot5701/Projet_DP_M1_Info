@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
-import modele_maladroit.Bille;
+import modele.Bille;
 import musique.SonLong;
 import outilsvues.EcouteurTerminaison;
 import outilsvues.Outils;
@@ -46,6 +46,7 @@ public class CadreAngryBalls extends Frame implements VueBillard
 		this.presentation = new TextField(message, 100); this.presentation.setEditable(false);
 		this.haut.add(this.presentation);
 
+		//this.billard = new Billard(billes, this);
 		this.billard = new Billard(billes);
 		this.add(this.billard);
 

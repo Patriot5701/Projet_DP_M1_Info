@@ -5,12 +5,13 @@ import java.io.File;
 import java.util.Vector;
 
 import mesmaths.geometrie.base.Vecteur;
-import modele_maladroit.Bille;
-import modele_maladroit.BilleHurlanteMvtNewtonArret;
-import modele_maladroit.BilleMvtNewtonFrottementRebond;
-import modele_maladroit.BilleMvtPesanteurFrottementRebond;
-import modele_maladroit.BilleMvtRUPasseMurailles;
-import modele_maladroit.BilleMvtRURebond;
+import modele.Bille;
+import modele.BilleSimple;
+import modele.CollisionBordFranchissement;
+import modele.CollisionBordRebond;
+import modele.MvmtAttractionNewton;
+import modele.MvmtAttractionPesanteur;
+import modele.MvmtFrottements;
 import musique.SonLong;
 import vue.CadreAngryBalls;
 import vue.VueBillard;
@@ -89,16 +90,40 @@ public class TestAngryBalls
 
 		//--------------- ici commence la partie a changer ---------------------------------
 
+		Bille billeRebond = new BilleSimple(p0, rayon, v0, Color.red);
+		billeRebond = new CollisionBordRebond(billeRebond);
+		
+		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Color.yellow);
+		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
+		billePesanteurFrottementRebond = new MvmtFrottements(billePesanteurFrottementRebond);
+		billePesanteurFrottementRebond = new CollisionBordRebond(billePesanteurFrottementRebond);
+		
+		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Color.green);
+		billeNewtonFrottementRebond = new MvmtAttractionNewton(billeNewtonFrottementRebond);
+		billeNewtonFrottementRebond = new MvmtFrottements(billeNewtonFrottementRebond);
+		billeNewtonFrottementRebond = new CollisionBordRebond(billeNewtonFrottementRebond);
+		
+		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Color.cyan);
+		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
+		
+		billes.add(billePasseMurailles);
+		billes.add(billeNewtonFrottementRebond);
+		billes.add(billePesanteurFrottementRebond);
+		billes.add(billeRebond);
+		
+		
+		
+		
+		
+		//billes.add(new BilleMvtRURebond(p0, rayon, v0, Color.red));
+		//billes.add(new BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
+		//billes.add(new BilleMvtNewtonFrottementRebond(p2, rayon, v2, Color.green));
+		//billes.add(new BilleMvtRUPasseMurailles(p3, rayon, v3, Color.cyan));
 
-		billes.add(new BilleMvtRURebond(p0, rayon, v0, Color.red));
-		billes.add(new BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
-		billes.add(new BilleMvtNewtonFrottementRebond(p2, rayon, v2, Color.green));
-		billes.add(new BilleMvtRUPasseMurailles(p3, rayon, v3, Color.cyan));
+		//BilleHurlanteMvtNewtonArret billeNoire;         // cas particulier de la bille qui hurle
+		//billes.add(billeNoire = new BilleHurlanteMvtNewtonArret(p4, rayon, v4,  Color.black,hurlements[choixHurlementInitial], cadre));
 
-		BilleHurlanteMvtNewtonArret billeNoire;         // cas particulier de la bille qui hurle
-		billes.add(billeNoire = new BilleHurlanteMvtNewtonArret(p4, rayon, v4,  Color.black,hurlements[choixHurlementInitial], cadre));
-
-		cadre.addChoixHurlementListener(billeNoire);  // A present on peut changer le son de la bille qui hurle
+		//cadre.addChoixHurlementListener(billeNoire);  // A present on peut changer le son de la bille qui hurle
 
 		//---------------------- ici finit la partie a changer -------------------------------------------------------------
 

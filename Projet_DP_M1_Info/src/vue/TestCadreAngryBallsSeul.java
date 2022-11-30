@@ -9,7 +9,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import controleur.OutilsConfigurationBilleHurlante;
-import modele_maladroit.Bille;
+import modele.Bille;
 import musique.SonBref;
 import musique.SonBrefFantome;
 import musique.SonLong;

@@ -38,4 +38,5 @@ public class CollisionBordBlocage extends DecorateurBilleCollisionBord{
 		return "";
 	}
 
+
 }

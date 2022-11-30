@@ -9,6 +9,7 @@ import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
 public class BilleSimple extends Bille{
+	
 
 	public Vecteur position;   // centre de la bille
 	public double rayon;            // rayon > 0
@@ -22,12 +23,15 @@ public class BilleSimple extends Bille{
 	private static int prochaineClef = 0;
 
 	public static double ro = 1;
+
 	
-	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse,Vecteur acceleration, Color couleur){
+	
+	
+	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, Color couleur) {
 		this.position = centre;
 		this.rayon = rayon;
 		this.vitesse = vitesse;
-		this.acceleration = acceleration;
+		this.acceleration = new Vecteur();
 		this.couleur = couleur;
 		this.clef = BilleSimple.prochaineClef ++;
 	}

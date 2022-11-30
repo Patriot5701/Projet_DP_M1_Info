@@ -2,7 +2,7 @@ package controleur;
 
 import java.util.Vector;
 
-import modele_maladroit.Bille;
+import modele.Bille;
 import vue.VueBillard;
 
 /**
@@ -78,7 +78,7 @@ public class AnimationBilles  implements Runnable{
 		double vitesse2Courante;
 
 		for( i = 0; i < billes.size(); ++i)
-			if ( (vitesse2Courante = billes.get(i).vitesse.normeCarree()) > vitesse2Max)
+			if ( (vitesse2Courante = billes.get(i).getVitesse().normeCarree()) > vitesse2Max)
 				vitesse2Max = vitesse2Courante; 
 
 		return vitesse2Max;
@@ -96,7 +96,7 @@ public class AnimationBilles  implements Runnable{
 
 		int i;
 		for ( i = 0; i < billes.size(); ++i)
-			if ( ( rayonCourant = billes.get(i).rayon) < rayonMin)
+			if ( ( rayonCourant = billes.get(i).getRayon()) < rayonMin)
 				rayonMin = rayonCourant;
 
 		return rayonMin;
