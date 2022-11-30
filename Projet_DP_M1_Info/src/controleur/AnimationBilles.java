@@ -68,7 +68,7 @@ public class AnimationBilles  implements Runnable{
 	}
 
 	/**
-	 * calcule le maximum de de la norme carr�e (pour faire moins de calcul) des vecteurs vitesse de la liste de billes
+	 * calcule le maximum de de la norme carree (pour faire moins de calcul) des vecteurs vitesse de la liste de billes
 	 * 
 	 * */
 	static double maxVitessesCarrees(Vector<Bille> billes){

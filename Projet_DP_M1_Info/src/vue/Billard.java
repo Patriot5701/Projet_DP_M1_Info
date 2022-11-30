@@ -43,6 +43,8 @@ public class Billard extends Canvas
 	public void paint(Graphics graphics)
 	{
 		int i;
+		VisitorBille visitor = new VisitorBilleAwt(graphics);
+		
 		//GraphicsDevice myDevice;
 		//Window myWindow = new Window(cadre);
 	
@@ -59,8 +61,11 @@ public class Billard extends Canvas
 				//myDevice.setFullScreenWindow(null);
 			//}
 		//}else {
+		
+		
 			for ( i = 0; i < this.billes.size(); ++i)
-				this.billes.get(i).dessine(graphics);
+				//this.billes.get(i).dessine(graphics);
+				this.billes.get(i).accepteDraw(visitor);
 		//}
 		
 		

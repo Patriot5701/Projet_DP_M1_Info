@@ -12,7 +12,7 @@ import outilsvues.Outils;
 /**
  * Vue dessinant les billes et contenant les 3 boutons de controle (arret du programme, lancer les billes, arreter les billes) 
  * et contenant la ligne des boutons de choix des sons pour la bille hurlante
- * 
+ * ²
  *  ICI : IL N'Y A RIEN A CHANGER 
  *  
  * 
@@ -56,13 +56,13 @@ public class CadreAngryBalls extends Frame implements VueBillard
 
 		this.bas.setLayout(new GridLayout(nombreLignes, nombreColonnes));
 
-		//---------------- placement des boutons lancer - arr�ter ------------------------------------
+		//---------------- placement des boutons lancer - arreter ------------------------------------
 
 		this.ligneBoutonsLancerArret = new Panel(); this.bas.add(this.ligneBoutonsLancerArret);
 
 
 		this.lancerBilles = new Button("lancer les billes"); this.ligneBoutonsLancerArret.add(this.lancerBilles);
-		this.arreterBilles = new Button("arr�ter les billes"); this.ligneBoutonsLancerArret.add(this.arreterBilles);
+		this.arreterBilles = new Button("arreter les billes"); this.ligneBoutonsLancerArret.add(this.arreterBilles);
 
 		//---------------- placement de la ligne de boutons de choix des sons pour le hurlement ------
 
@@ -100,7 +100,6 @@ public class CadreAngryBalls extends Frame implements VueBillard
 		int i;
 
 		for ( i = 0; i < this.ligneBoutonsChoixHurlement.boutons.length; ++i) this.ligneBoutonsChoixHurlement.boutons[i].addItemListener(ecouteurChoixHurlant);
-
 	}
 
 }

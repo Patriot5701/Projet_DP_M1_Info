@@ -17,17 +17,14 @@ public class BilleSimple extends Bille{
 	public Vecteur acceleration;
 	public int clef;                // identifiant unique de cette bille
 
-	private Color couleur;          // reference awt : mauvais
-	//TODO Mettre classe liste de couleurs avec les différentes librairies
+	private String couleur;
 
 	private static int prochaineClef = 0;
 
 	public static double ro = 1;
 
 	
-	
-	
-	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, Color couleur) {
+	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur) {
 		this.position = centre;
 		this.rayon = rayon;
 		this.vitesse = vitesse;
@@ -67,7 +64,7 @@ public class BilleSimple extends Bille{
 		return this.clef;
 	}
 	
-	public Color getColor() {
+	public String getColor() {
 		return this.couleur;
 	}
 	public double masse() {return ro*Geop.volumeSphere(rayon);}

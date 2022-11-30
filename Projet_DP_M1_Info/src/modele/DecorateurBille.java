@@ -42,7 +42,7 @@ public abstract class DecorateurBille extends Bille{
 		return this.billeDecoree.getClef();
 	}
 	
-	public Color getColor() {
+	public String getColor() {
 		return this.billeDecoree.getColor();
 	}
 	

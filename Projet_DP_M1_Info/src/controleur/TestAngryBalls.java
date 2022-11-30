@@ -9,12 +9,12 @@ import modele.Bille;
 import modele.BilleSimple;
 import modele.CollisionBordFranchissement;
 import modele.CollisionBordRebond;
+import modele.Colors;
 import modele.MvmtAttractionNewton;
 import modele.MvmtAttractionPesanteur;
 import modele.MvmtFrottements;
 import musique.SonLong;
 import vue.CadreAngryBalls;
-import vue.VueBillard;
 
 
 /**
@@ -90,20 +90,20 @@ public class TestAngryBalls
 
 		//--------------- ici commence la partie a changer ---------------------------------
 
-		Bille billeRebond = new BilleSimple(p0, rayon, v0, Color.red);
+		Bille billeRebond = new BilleSimple(p0, rayon, v0, Colors.RED);
 		billeRebond = new CollisionBordRebond(billeRebond);
 		
-		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Color.yellow);
+		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW);
 		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new MvmtFrottements(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new CollisionBordRebond(billePesanteurFrottementRebond);
 		
-		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Color.green);
+		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN);
 		billeNewtonFrottementRebond = new MvmtAttractionNewton(billeNewtonFrottementRebond);
 		billeNewtonFrottementRebond = new MvmtFrottements(billeNewtonFrottementRebond);
 		billeNewtonFrottementRebond = new CollisionBordRebond(billeNewtonFrottementRebond);
 		
-		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Color.cyan);
+		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
 		
 		billes.add(billePasseMurailles);
@@ -134,12 +134,12 @@ public class TestAngryBalls
 
 		AnimationBilles animationBilles = new AnimationBilles(billes, cadre);
 
-		//----------------------- mise en place des ecouteurs de boutons qui permettent de contreler (un peu...) l'application -----------------
+		//----------------------- mise en place des ecouteurs de boutons qui permettent de controler (un peu...) l'application -----------------
 
 		EcouteurBoutonLancer ecouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
 		EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles); 
 
-		//------------------------- activation des �couteurs des boutons et �a tourne tout seul ------------------------------
+		//------------------------- activation des ecouteurs des boutons et ca tourne tout seul ------------------------------
 
 
 		cadre.lancerBilles.addActionListener(ecouteurBoutonLancer);             // pourrait etre remplace par Observable - Observer 
