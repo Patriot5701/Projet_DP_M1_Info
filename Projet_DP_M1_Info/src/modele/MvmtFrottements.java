@@ -2,6 +2,8 @@ package modele;
 
 import java.util.Vector;
 
+import mesmaths.mecanique.MecaniquePoint;
+
 public class MvmtFrottements extends DecorateurBille{
 
 	public MvmtFrottements(Bille billeDecorated) {
@@ -15,7 +17,7 @@ public class MvmtFrottements extends DecorateurBille{
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
 		this.billeDecoree.gestionAcceleration(billes);
-		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes));     // contribution de l'acceleration due au frottement
+		this.getAcceleration().ajoute(MecaniquePoint.freinageFrottement(this.getMasse(), this.getVitesse()));     // contribution de l'acceleration due au frottement
 	}
 
 	//TODO
