@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import mesmaths.cinematique.Collisions;
 
-public class CollisionBordFranchissement extends DecorateurBilleCollisionBord{
+public class CollisionBordFranchissement extends DecorateurBille{
 
 	public CollisionBordFranchissement(Bille billeDecorated) {
 		super(billeDecorated);
@@ -23,18 +23,14 @@ public class CollisionBordFranchissement extends DecorateurBilleCollisionBord{
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
 			double hauteur) {
-		billeDecoree.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
-		if(ComportementMemoire.getInstance().getComportementCollision().equals(this.getClass().getName())) {
-			Collisions.collisionBilleContourPasseMuraille( this.getPosition(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
-		}
+		Collisions.collisionBilleContourPasseMuraille( this.getPosition(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
 	}
 
 	@Override
-	public String toStringCptmt() {
-		if(ComportementMemoire.getInstance().getComportementCollision().equals(this.getClass().getName())) {
-			return ", Comportement : franchit les bords";
-		}
-		return "";
+	public String toString() {
+		String message;
+		message = billeDecoree.toString();
+		return message;
 	}
 
 

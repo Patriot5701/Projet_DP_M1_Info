@@ -1,15 +1,20 @@
 package vue;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.DisplayMode;
 import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.Graphics;
 import java.util.Vector;
 
+import javax.swing.JFrame;
+
 import modele.Bille;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Window;
+import java.awt.image.BufferStrategy;
 
 
 
@@ -22,8 +27,14 @@ import java.awt.Window;
  * */
 public class Billard extends Canvas
 {
+	
 	Vector<Bille> billes;
 	CadreAngryBalls cadre;
+	VisitorBille visitor = new VisitorBilleAwt(getGraphics());
+		
+	GraphicsDevice myDevice;
+	Window myWindow = new Window(cadre);
+	
 	public Billard(Vector<Bille> billes)
 	{
 		this.billes = billes;
@@ -34,7 +45,45 @@ public class Billard extends Canvas
 	{
 		this.billes = billes;
 		this.cadre = cadre;
+		//myRenderingLoop();
 	}
+	
+	public void myRenderingLoop() {
+	    boolean done = false;
+	    BufferStrategy myStrategy = null;
+
+	    while (!done) {
+	        Graphics g = null;
+	        try {
+	            g = myStrategy.getDrawGraphics();
+	            visitor = new VisitorBilleAwt(g);
+	            paint(g);
+	            for (int i = 0; i < this.billes.size(); ++i) {
+					//this.billes.get(i).dessine(graphics);
+					this.billes.get(i).accepteDraw(visitor);
+				}
+	            render(g);
+	        } finally {
+	            g.dispose();
+	        }
+	        myStrategy.show();
+	    }
+	}
+	
+	private void render(Graphics graphics) {
+
+	    BufferStrategy bs = this.getBufferStrategy();
+
+	    if (bs == null){
+	        createBufferStrategy(3);
+	        return;
+	    }
+
+	    
+	    bs.show();
+
+	}
+	
 	
 	/* (non-Javadoc)
 	 * @see java.awt.Canvas#paint(java.awt.Graphics)
@@ -43,32 +92,31 @@ public class Billard extends Canvas
 	public void paint(Graphics graphics)
 	{
 		int i;
-		VisitorBille visitor = new VisitorBilleAwt(graphics);
-		
-		//GraphicsDevice myDevice;
-		//Window myWindow = new Window(cadre);
-	
-		
-		//GraphicsEnvironment environnement = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		//myDevice = environnement.getDefaultScreenDevice();
-		
-		//if(myDevice.isFullScreenSupported()) {
-			//try {
-				//myDevice.setFullScreenWindow(myWindow);
-				//for ( i = 0; i < this.billes.size(); ++i)
-					//this.billes.get(i).dessine(graphics);
-			//}finally {
-				//myDevice.setFullScreenWindow(null);
-			//}
-		//}else {
-		
-		
-			for ( i = 0; i < this.billes.size(); ++i)
-				//this.billes.get(i).dessine(graphics);
+		visitor = new VisitorBilleAwt(graphics);
+//		JFrame f = new JFrame();
+//		GraphicsEnvironment environnement = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//		myDevice = environnement.getDefaultScreenDevice();
+//		DisplayMode newDisplayMode = new DisplayMode(this.getWidth(),this.getHeight(),DisplayMode.BIT_DEPTH_MULTI , DisplayMode.REFRESH_RATE_UNKNOWN );
+//		DisplayMode oldDisplayMode = myDevice.getDisplayMode();
+//		if(myDevice.isFullScreenSupported()) {
+//			try {
+//				myDevice.setFullScreenWindow(myWindow);
+//				//myDevice.setDisplayMode(newDisplayMode);
+//				f.setUndecorated(true);
+//				
+//				for ( i = 0; i < this.billes.size(); ++i)
+//					//this.billes.get(i).dessine(graphics);
+//					this.billes.get(i).accepteDraw(visitor);
+//				myDevice.setFullScreenWindow(null);
+//			}finally {
+//				//myDevice.setDisplayMode(oldDisplayMode);
+//				myDevice.setFullScreenWindow(null);
+//			}
+//		}else {
+			for ( i = 0; i < this.billes.size(); ++i) {
 				this.billes.get(i).accepteDraw(visitor);
+			}
 		//}
-		
-		
 
 		
 

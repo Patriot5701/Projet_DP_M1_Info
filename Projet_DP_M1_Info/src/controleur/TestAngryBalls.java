@@ -13,6 +13,7 @@ import modele.Colors;
 import modele.MvmtAttractionNewton;
 import modele.MvmtAttractionPesanteur;
 import modele.MvmtFrottements;
+import modele.MvmtRepulsionNewton;
 import musique.SonLong;
 import vue.CadreAngryBalls;
 
@@ -90,8 +91,13 @@ public class TestAngryBalls
 
 		//--------------- ici commence la partie a changer ---------------------------------
 
-		Bille billeRebond = new BilleSimple(p0, rayon, v0, Colors.RED);
-		billeRebond = new CollisionBordRebond(billeRebond);
+		Bille billeRebondNewton = new BilleSimple(p0, rayon, v0, Colors.RED);
+		billeRebondNewton = new CollisionBordRebond(billeRebondNewton);
+		billeRebondNewton = new MvmtAttractionNewton(billeRebondNewton);
+		
+		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE);
+		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
+		billeRepulsionRebond = new CollisionBordRebond(billeRepulsionRebond);
 		
 		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW);
 		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
@@ -105,14 +111,13 @@ public class TestAngryBalls
 		
 		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
+		billePasseMurailles = new CollisionBordRebond(billePasseMurailles);
 		
-		billes.add(billePasseMurailles);
-		billes.add(billeNewtonFrottementRebond);
-		billes.add(billePesanteurFrottementRebond);
-		billes.add(billeRebond);
-		
-		
-		
+		//billes.add(billePasseMurailles);
+//		billes.add(billeNewtonFrottementRebond);
+		//billes.add(billePesanteurFrottementRebond);
+		billes.add(billeRebondNewton);
+		billes.add(billeRepulsionRebond);
 		
 		
 		//billes.add(new BilleMvtRURebond(p0, rayon, v0, Color.red));

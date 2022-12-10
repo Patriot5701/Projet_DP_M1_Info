@@ -54,4 +54,16 @@ public abstract class DecorateurBille extends Bille{
 		billeDecoree.deplacer(deltaT);
 	}
 	
+	
+	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
+            double hauteur)
+    {
+		billeDecoree.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
+    }
+	
+	public void gestionAcceleration(Vector<Bille> billes)
+    {
+		billeDecoree.gestionAcceleration(billes);
+    }
+	
 }

@@ -128,7 +128,7 @@ public class BilleSimple extends Bille{
 	
 	
 	public String toString(){
-		String str = "centre = " + this.getPosition() + " rayon = "+ this.getRayon() +  " vitesse = " + this.getVitesse() + " acceleration = " + this.getAcceleration() + " couleur = " + this.getColor() + "clef = " + this.getClef();
+		String str =  "\n" + "	centre = " + this.getPosition() + "\n" + "	rayon = " + this.getRayon() + "\n" +  "	vitesse = " + this.getVitesse() + "\n" + "	acceleration = " + this.getAcceleration() + "\n" + "	couleur = " + this.getColor() + "\n" + "	clef = " + this.getClef() + "\n";
 		
 		return str;
     }

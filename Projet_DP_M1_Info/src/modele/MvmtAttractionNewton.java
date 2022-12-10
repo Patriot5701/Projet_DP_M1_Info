@@ -12,13 +12,14 @@ public class MvmtAttractionNewton extends DecorateurBille{
 	/* (non-Javadoc)
 	 * @see decorateur_angryballs.modele.Bille#gestionAcc�l�ration(java.util.Vector)
 	 */
+	@Override
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
 		this.billeDecoree.gestionAcceleration(billes);
 		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes));     // contribution de l'acceleration due a l'attraction des autres billes
 	}
 
-	//TODO
+	
 	@Override
 	public String toString() {
 		String str = billeDecoree.toString();

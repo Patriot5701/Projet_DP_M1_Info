@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
 import mesmaths.geometrie.base.Vecteur;
+import modele.OutilsBilles;
 import vue.VisitorBille;
 
 public abstract class Bille {
@@ -38,7 +39,9 @@ public abstract class Bille {
 	
 	public abstract void gestionAcceleration(Vector<Bille> billes);
 	
-	public abstract boolean gestionCollisionBilleBille(Vector<Bille> billes);
+	public boolean gestionCollisionBilleBille(Vector<Bille> billes){
+        return OutilsBilles.gestionCollisionBilleBille(this, billes);
+    }
 	
 	public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
 

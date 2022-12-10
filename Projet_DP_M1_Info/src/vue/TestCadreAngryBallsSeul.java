@@ -28,8 +28,8 @@ public class TestCadreAngryBallsSeul
 		File file = new File(""); // la ou la JVM est lancee : racine du projet
 
 		File repertoireSon = new File(file.getAbsoluteFile(),
-				"exodecorateur_angryballs"+File.separatorChar+
-				"maladroit"+File.separatorChar+"bruits");
+				"src"+File.separatorChar+"bruits");
+		System.out.println("repertoire son = " + repertoireSon);
 
 		//-------------------- chargement des sons pour les hurlements --------------------------------------
 
