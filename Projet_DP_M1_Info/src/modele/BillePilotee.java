@@ -1,10 +1,10 @@
 package modele;
 
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
-public class BillePilotee extends DecorateurBille implements MouseMotionListener {
+public class BillePilotee extends DecorateurBille implements MouseListener {
 
 	public BillePilotee(Bille billeDecorated) {
 		super(billeDecorated);
@@ -32,14 +32,33 @@ public class BillePilotee extends DecorateurBille implements MouseMotionListener
 		return str + ", Comportement : attrapable";
 	}
 
+	//inutile
 	@Override
-	public void mouseDragged(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	//inutile
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	//inutile
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+
 
 }
