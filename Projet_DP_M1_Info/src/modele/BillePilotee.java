@@ -4,10 +4,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-public class BillePilotee extends DecorateurBille implements MouseListener {
+import controleur.ControllerGeneral;
+import vue.CadreAngryBalls;
 
-	public BillePilotee(Bille billeDecorated) {
+public class BillePilotee extends DecorateurBille {
+	ControllerGeneral controllerGen;
+
+	public BillePilotee(Bille billeDecorated, CadreAngryBalls cadre) {
 		super(billeDecorated);
+		
+		controllerGen = new ControllerGeneral(this, cadre);
 	}
 
 	@Override
@@ -31,34 +37,5 @@ public class BillePilotee extends DecorateurBille implements MouseListener {
 		String str = billeDecoree.toString();
 		return str + ", Comportement : attrapable";
 	}
-
-	//inutile
-	@Override
-	public void mouseClicked(MouseEvent e) {
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	//inutile
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	//inutile
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-
-
 
 }

@@ -59,7 +59,6 @@ public class Billard extends Canvas
 	            visitor = new VisitorBilleAwt(g);
 	            paint(g);
 	            for (int i = 0; i < this.billes.size(); ++i) {
-					//this.billes.get(i).dessine(graphics);
 					this.billes.get(i).accepteDraw(visitor);
 				}
 	            render(g);
@@ -79,7 +78,6 @@ public class Billard extends Canvas
 	        return;
 	    }
 
-	    
 	    bs.show();
 
 	}

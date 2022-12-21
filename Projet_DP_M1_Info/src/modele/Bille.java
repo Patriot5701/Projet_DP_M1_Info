@@ -8,12 +8,6 @@ import modele.OutilsBilles;
 import vue.VisitorBille;
 
 public abstract class Bille {
-	
-	/**
-	 * @return the graphic library
-	 */
-	//public abstract String getLibrary();
-
 	/**
 	 * @return the position
 	 */

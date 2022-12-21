@@ -24,15 +24,13 @@ public abstract class ControllerState {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		//char c = arg0.getKeyChar();
-		//traite(c);
+		System.out.println("SALUT MEC !!!");
 
 	}
 
 
 	public void mouseReleased(MouseEvent e) {
-		//char c = arg0.getKeyChar();
-		//traite(c);
+		System.out.println("DEGAGE MEC !!!");
 
 	}
 	

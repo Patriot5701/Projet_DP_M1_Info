@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import mesmaths.geometrie.base.Vecteur;
 import modele.Bille;
+import modele.BillePilotee;
 import modele.BilleSimple;
 import modele.CollisionBordFranchissement;
 import modele.CollisionBordRebond;
@@ -94,6 +95,7 @@ public class TestAngryBalls
 		Bille billeRebondNewton = new BilleSimple(p0, rayon, v0, Colors.RED);
 		billeRebondNewton = new CollisionBordRebond(billeRebondNewton);
 		billeRebondNewton = new MvmtAttractionNewton(billeRebondNewton);
+		billeRebondNewton = new BillePilotee(billeRebondNewton, cadre);
 		
 		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE);
 		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);

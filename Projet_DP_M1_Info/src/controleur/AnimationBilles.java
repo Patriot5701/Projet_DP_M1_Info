@@ -11,7 +11,7 @@ import vue.VueBillard;
  * 
  * ICI : IL N'Y A RIEN A CHANGER
  * */
-public class AnimationBilles  implements Runnable{
+public class AnimationBilles implements Runnable{
 
 
 	Vector<Bille> billes;   // la liste de toutes les billes en mouvement 
