@@ -2,18 +2,14 @@ package controleur;
 
 import java.awt.event.MouseEvent;
 
-public class CaughtController extends ControllerState{
+public class AutoMovingController extends ControllerState{
 
-	public CaughtController(ControllerGeneral ctrlrGen, ControllerState follow, ControllerState prev) {
+	public AutoMovingController(ControllerGeneral ctrlrGen, ControllerState follow, ControllerState prev) {
 		super(ctrlrGen, follow, prev);
 	}
-
+	
 	@Override
-	public void treat() {
-		
-		//TODO
-		System.out.println("caught");
-		super.treat();
+	public void mouseReleased(MouseEvent e) {
 	}
 	
 	@Override
@@ -26,10 +22,9 @@ public class CaughtController extends ControllerState{
 		double rBille = controllerGeneral.billePilotee.getRayon();
 		
 		if(xMouse <= xBille+rBille && xMouse >= xBille-rBille && yMouse <= yBille+rBille && yMouse >= yBille-rBille) {
-			System.out.println("HEY MEC !!!");
-			treat();
+			this.controllerGeneral.setCurrentController(follower);
+			System.out.println("attrapée !");
 		}
 	}
-	
 
 }

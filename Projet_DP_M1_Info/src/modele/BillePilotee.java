@@ -16,6 +16,7 @@ public class BillePilotee extends DecorateurBille {
 	@Override
 	public void gestionAcceleration(Vector<Bille> billes) {
 		this.billeDecoree.gestionAcceleration(billes);
+		this.getAcceleration().ajoute(this.controllerGen.currentController.treat());
 	}
 
 	@Override
@@ -34,5 +35,6 @@ public class BillePilotee extends DecorateurBille {
 		String str = billeDecoree.toString();
 		return str + ", Comportement : attrapable";
 	}
+
 
 }

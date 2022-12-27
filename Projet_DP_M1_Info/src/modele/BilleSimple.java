@@ -11,7 +11,6 @@ import mesmaths.geometrie.base.Vecteur;
 public class BilleSimple extends Bille{
 	
 
-	public Vecteur position;   // centre de la bille
 	public double rayon;            // rayon > 0
 	public Vecteur vitesse;
 	public Vecteur acceleration;
@@ -84,6 +83,7 @@ public class BilleSimple extends Bille{
 	 **/
 	public void deplacer(double deltaT){
 		Cinematique.mouvementUniformementAccelere( this.getPosition(), this.getVitesse(), this.getAcceleration(), deltaT);
+		this.acceleration = new Vecteur();
 	}
 	
 	/**
@@ -93,9 +93,7 @@ public class BilleSimple extends Bille{
 	 * La nature du calcul du vecteur acceleration de la bille  est definie dans les classes derivees
 	 * A ce niveau le vecteur acceleration est mise zaro (c'est a dire pas d'acceleration)
 	 **/
-	public void gestionAcceleration(Vector<Bille> billes){
-		//this.getAcceleration().set(Vecteur.VECTEURNUL);
-	}
+	public void gestionAcceleration(Vector<Bille> billes){}
 	
 	/**
 	 * gestion de l'eventuelle  collision de cette bille avec les autres billes
@@ -110,7 +108,6 @@ public class BilleSimple extends Bille{
 	public boolean gestionCollisionBilleBille(Vector<Bille> billes){
 		return OutilsBilles.gestionCollisionBilleBille(this, billes);
 	}
-	//TODO à voir
 	
 	/**
 	 * gestion de l'eventuelle collision de la bille (this) avec le contour rectangulaire de l'ecran defini par (abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur)
@@ -119,12 +116,7 @@ public class BilleSimple extends Bille{
 	 * 
 	 * La nature du comportement de la bille en reponse a cette collision est definie dans les classes derivees
 	 **/
-	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
-		//TODO
-	}
-	
-	/* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ca */
-
+	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {}
 	
 	
 	public String toString(){

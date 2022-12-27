@@ -2,7 +2,12 @@ package controleur;
 
 import java.awt.event.MouseEvent;
 
+import mesmaths.geometrie.base.Vecteur;
+
 public abstract class ControllerState {
+	double xMouse;
+	double yMouse;
+	
 	ControllerGeneral controllerGeneral;
 	
 	public ControllerState follower, previous;
@@ -15,21 +20,20 @@ public abstract class ControllerState {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		//CaughtController va faire le taff
-		//Sinon affiche le msg suivant car est dans ThrownController
 		System.out.println("SALUT MEC !!!");
 	}
 
 
 	public void mouseReleased(MouseEvent e) {
-		//ThrownController va faire le taff
-		//Sinon affiche le msg suivant car est dans CaughtController
 		System.out.println("DEGAGE MEC !!!");
 
 	}
 	
-	public void treat() {
-		this.controllerGeneral.setCurrentController(this.follower);
+	public void mouseMoved(MouseEvent e) {
+		this.xMouse = e.getX();
+		this.yMouse = e.getY();
 	}
+	
+	public Vecteur treat() {return Vecteur.VECTEURNUL;}
 	
 }

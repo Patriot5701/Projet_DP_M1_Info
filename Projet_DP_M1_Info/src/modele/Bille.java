@@ -8,6 +8,8 @@ import modele.OutilsBilles;
 import vue.VisitorBille;
 
 public abstract class Bille {
+
+	public Vecteur position;   // centre de la bille
 	/**
 	 * @return the position
 	 */

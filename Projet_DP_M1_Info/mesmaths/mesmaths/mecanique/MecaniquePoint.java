@@ -51,7 +51,7 @@ public class MecaniquePoint
 
 	/**
 	 * 
-	 * calcule l'acc�l�ration (en fait freinage dans le langage courant) due � la force de frottement visqueux proportionnelle au vecteur vitesse v et au coefficient de frottement COEFFICIENTFROTTEMENT
+	 * calcule l'acceleration (en fait freinage dans le langage courant) due a la force de frottement visqueux proportionnelle au vecteur vitesse v et au coefficient de frottement COEFFICIENTFROTTEMENT
 	 * 
 	 * Un frottement visqueux est un frottement proportionnel � la vitesse comme le frottement dans l'air par exemple (et cela freine l'objet en mouvement)
 	 * 
@@ -127,13 +127,13 @@ ne tient pas compte de la constante de gravitation G
 	}
 
 	/**
-	 * calcule et renvoie le champ de gravit� au point P dues aux masses masses[0]...masses[d-1] plac�es respectivement aux points C[0]...C[d-1]
+	 * calcule et renvoie le champ de gravite au point P dues aux masses masses[0]...masses[d-1] placees respectivement aux points C[0]...C[d-1]
 	 * 
-	 * utilise la constante de gravitation universelle  (pr�vue par la loi de gravitation universelle de Newton) d�finie dans cette classe
+	 * utilise la constante de gravitation universelle  (prevue par la loi de gravitation universelle de Newton) definie dans cette classe
 	 * 
 	 * On suppose que taille de masses[] == taille de C[] == d
 	 * 
-	 * @return le vecteur acc�l�ration en P  due � l'attraction gravitationnelle de toutes les masses masses[i] plac�es en C[i] pour i = 0...d-1   
+	 * @return le vecteur acceleration en P  due a l'attraction gravitationnelle de toutes les masses masses[i] placees en C[i] pour i = 0...d-1   
 	 * */
 	public static  Vecteur champGraviteGlobal(Vecteur P, double masses[], Vecteur C[])
 	{

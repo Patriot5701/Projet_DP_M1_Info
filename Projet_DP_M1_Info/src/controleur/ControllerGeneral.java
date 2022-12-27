@@ -4,19 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import modele.BillePilotee;
 import vue.CadreAngryBalls;
 
-public class ControllerGeneral implements MouseListener{
+public class ControllerGeneral implements MouseListener, MouseMotionListener{
 	BillePilotee billePilotee;	//Reference sur modele
 	CadreAngryBalls cadre;		//Reference sur vue
 	
 	EcouteurPosition ecouteurPosition;
 	
-	ControllerState currentController;	//Le controleur qui voyage à travers le graphe orienté
-	CaughtController caughtController;	//Associé à l'état "Bille Attrapée"
-	ThrownController thrownController;	//Associé à l'état "Bille Lancée"
+	public ControllerState currentController;	//Le controleur qui voyage à travers le graphe orienté
+	MouseFollowingController mouseFollowingController;	//Associé à l'état "Bille Attrapée"
+	AutoMovingController autoMovingController;	//Associé à l'état "Bille Lancée"
 	
 	public ControllerGeneral(BillePilotee billePilotee, CadreAngryBalls cadre) {
 		this.cadre = cadre;
@@ -24,20 +25,21 @@ public class ControllerGeneral implements MouseListener{
 		this.installControllers();	//Permet d'écouter les évènements Souris
 		
 		this.cadre.billard.addMouseListener(this);
+		this.cadre.billard.addMouseMotionListener(this);
 	}
 	
 	private void installControllers() {
 		this.ecouteurPosition = new EcouteurPosition(cadre);
 		
 		//Instanciation des controleurs
-		this.caughtController = new CaughtController(this, null, null);
-		this.thrownController = new ThrownController(this, caughtController, null); //On met caught en follower car ils forment une boucle
+		this.mouseFollowingController = new MouseFollowingController(this, null, null);
+		this.autoMovingController = new AutoMovingController(this, mouseFollowingController, null); //On met caught en follower car ils forment une boucle
 		
 		//On rajoute les liens manquants entre les controleurs
-		this.caughtController.follower = this.thrownController;
+		this.mouseFollowingController.follower = this.autoMovingController;
 		
 		//On place le contrôleur courant au premier état du graphe
-		this.currentController = this.caughtController;
+		this.currentController = this.autoMovingController;
 	}
 	
 	public void setCurrentController(ControllerState controller) {
@@ -66,5 +68,16 @@ public class ControllerGeneral implements MouseListener{
 	//Inutile
 	@Override
 	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		this.currentController.mouseMoved(e);
+	}
+
 
 }
