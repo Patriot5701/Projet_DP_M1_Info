@@ -1,10 +1,17 @@
 package modele;
 
+import java.io.File;
 import java.util.Vector;
 
+import javax.SonBrefJavax;
+
+import controleur.OutilsConfigurationBilleHurlante;
 import mesmaths.cinematique.Collisions;
 import mesmaths.geometrie.base.Vecteur;
 import mesmaths.mecanique.MecaniquePoint;
+import musique.SonBref;
+import musique.SonBrefFantome;
+import musique.SonLong;
 
 /**
  * 
@@ -17,6 +24,11 @@ import mesmaths.mecanique.MecaniquePoint;
 
 public class OutilsBilles
 {
+	private static final double COEFF_VOLUME = 10;  
+	private static File file = new File(""); // la ou la JVM est lancee : racine du projet
+	private static File repertoireSon = new File(file.getAbsoluteFile(),"src"+File.separatorChar+"bruits");
+	private Vector<SonLong> sonsLongs = OutilsConfigurationBilleHurlante.chargeSons(repertoireSon, "config_audio_bille_hurlante.txt");
+	static SonBref sonBref;
 	/**
 	 * @param billes est la liste de TOUTES les billes en mouvement
 	 * @param cetteBille est l'une d'entre elles.
@@ -63,9 +75,25 @@ public class OutilsBilles
 
 		//--- on cherche a present la 1ere des autres billes avec laquelle cetteBille est en collision ---------------------
 		//-------------- on suppose qu'il ne peut y avoir de collision qui implique plus de deux billes a la fois ---------------
-
+		try
+		{
+			sonBref = new SonBrefJavax(repertoireSon,"impact.wav",0,10);
+		}
+		catch (Exception e)
+		{
+			//System.err.println("son non créé");
+			System.err.println(e);
+			sonBref = new SonBrefFantome();
+		}
+		 
 		Bille billeCourante;
-
+		double n = cetteBille.getVitesse().norme();
+		double y = Math.exp(-COEFF_VOLUME*n);
+//		double xMax = cadre.largeurBillard();
+//		double x1 = Math.abs(cetteBille.getPosition().x/xMax);                   /* on obtient 0 <= x1 <= 1 */ ////System.err.println("dans BilleHurlante.deplacer() : x1 =  "+ x1);
+//		double balance = 2*x1 - 1; 
+		double volume = 1-y;
+		double balance = 0;
 		int i;
 
 		for ( i = 0 ; i < autresBilles.size(); ++i)
@@ -73,6 +101,8 @@ public class OutilsBilles
 			billeCourante = autresBilles.get(i);
 			if (Collisions.CollisionBilleBille(    cetteBille.getPosition(),    cetteBille.getRayon(),    cetteBille.getVitesse(),    cetteBille.getMasse(), 
 					billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.getMasse()))
+				
+				OutilsBilles.sonBref.joue(volume, balance);
 				return true; 
 		}
 		return false;

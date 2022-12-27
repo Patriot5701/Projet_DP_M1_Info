@@ -20,12 +20,17 @@ public class CadreAngryBalls_4_9_2022 extends Frame implements VueBillard
 	Billard billard;
 	public Button lancerBilles, arreterBilles;
 	Panel haut, centre, bas;
+	GraphicsDevice myDevice;
 
 	EcouteurTerminaison ecouteurTerminaison;
 
 	public CadreAngryBalls_4_9_2022(String titre, String message, Vector<Bille> billes) throws HeadlessException
 	{
 		super(titre);
+		GraphicsEnvironment environnement = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		myDevice = environnement.getDefaultScreenDevice();
+//		if(myDevice.isFullScreenSupported()) this.setFullScreen();
+//		else Outils.place(this, 0.33, 0.33, 0.5, 0.5);
 		Outils.place(this, 0.33, 0.33, 0.5, 0.5);
 		this.ecouteurTerminaison = new EcouteurTerminaison(this);
 
@@ -75,6 +80,6 @@ public class CadreAngryBalls_4_9_2022 extends Frame implements VueBillard
 		this.setVisible(true);
 	}
 
-
+	public void setFullScreen() { myDevice.setFullScreenWindow(this); }
 
 }

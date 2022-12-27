@@ -1,7 +1,5 @@
 package modele;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.Vector;
 
 import mesmaths.cinematique.Cinematique;
@@ -22,6 +20,9 @@ public class BilleSimple extends Bille{
 	private static int prochaineClef = 0;
 
 	public static double ro = 1;
+	
+	int i;
+	long dernierInstant;
 
 	
 	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur) {
@@ -108,6 +109,7 @@ public class BilleSimple extends Bille{
 	 * si renvoie false, il n'y a pas de collision et les billes sont laissees intactes 
 	 **/
 	public boolean gestionCollisionBilleBille(Vector<Bille> billes){
+		
 		return OutilsBilles.gestionCollisionBilleBille(this, billes);
 	}
 	//TODO à voir

@@ -12,7 +12,7 @@ import vue.VueBillard;
 public class Hurlement extends DecorateurBille implements ItemListener{
 	private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */
 	public static final int DELAI_MAX = 150;    /* delai maximum de rafraichissement du son. en millisecondes */
-	private static final double COEFF_VOLUME = 6;      // plus la valeur est grande, plus le son augmente rapidement en fct de la vitesse de la boule 
+	private static final double COEFF_VOLUME = 10;      // plus la valeur est grande, plus le son augmente rapidement en fct de la vitesse de la boule 
 	CadreAngryBalls cadre;
 	public SonLong sonLong;
 	int i;
@@ -32,9 +32,7 @@ public class Hurlement extends DecorateurBille implements ItemListener{
 		double n = this.getVitesse().norme();
 		double y = Math.exp(-COEFF_VOLUME*n);
 		double xMax = cadre.largeurBillard();
-		double x1 = this.getPosition().x/xMax;                   /* on obtient 0 <= x1 <= 1 */ ////System.err.println("dans BilleHurlante.deplacer() : x1 =  "+ x1);
-		if(x1>1) x1 = 1;
-		if(x1<0) x1 = 0;
+		double x1 = Math.abs(this.getPosition().x/xMax);                   /* on obtient 0 <= x1 <= 1 */ ////System.err.println("dans BilleHurlante.deplacer() : x1 =  "+ x1);
 		double balance = 2*x1 - 1; 
 		double volume = 1-y;
 		int delai = (int)(DELAI_MIN*volume + DELAI_MAX*y);              /* le delai entre 2 diffusions diminue lorsque la vitesse augmente */

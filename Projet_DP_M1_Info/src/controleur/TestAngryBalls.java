@@ -1,10 +1,8 @@
 package controleur;
 
-import java.awt.Color;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.Vector;
-
 import mesmaths.geometrie.base.Vecteur;
 import modele.Bille;
 import modele.BilleSimple;
@@ -38,8 +36,7 @@ public class TestAngryBalls
 		File file = new File(""); // la ou la JVM est lancee : racine du projet
 
 		//TODO Changer le path
-		File repertoireSon = new File(file.getAbsoluteFile(),
-				"src"+File.separatorChar+"bruits");
+		File repertoireSon = new File(file.getAbsoluteFile(),"src"+File.separatorChar+"bruits");
 		System.out.println("repertoire son = " + repertoireSon);
 
 		//-------------------- chargement des sons pour les hurlements --------------------------------------
@@ -118,12 +115,11 @@ public class TestAngryBalls
 		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
 		//billePasseMurailles = new CollisionBordRebond(billePasseMurailles);
 		
-		billes.add(billePasseMurailles);
+		//billes.add(billePasseMurailles);
 //		billes.add(billeNewtonFrottementRebond);
-		//billes.add(billePesanteurFrottementRebond);
-		//billes.add(billeRebondNewton);
+		billes.add(billePesanteurFrottementRebond);
+		billes.add(billeRebondNewton);
 		//billes.add(billeRepulsionRebond);
-		
 		
 		//billes.add(new BilleMvtRURebond(p0, rayon, v0, Color.red));
 		//billes.add(new BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
