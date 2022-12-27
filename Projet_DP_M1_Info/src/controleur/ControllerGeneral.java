@@ -31,13 +31,17 @@ public class ControllerGeneral implements MouseListener{
 		
 		//Instanciation des controleurs
 		this.caughtController = new CaughtController(this, null, null);
-		this.thrownController = new ThrownController(this, null, this.caughtController);
+		this.thrownController = new ThrownController(this, caughtController, null); //On met caught en follower car ils forment une boucle
 		
 		//On rajoute les liens manquants entre les controleurs
 		this.caughtController.follower = this.thrownController;
 		
 		//On place le contrôleur courant au premier état du graphe
 		this.currentController = this.caughtController;
+	}
+	
+	public void setCurrentController(ControllerState controller) {
+		this.currentController = controller;
 	}
 
 	@Override

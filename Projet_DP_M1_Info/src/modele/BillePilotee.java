@@ -1,9 +1,6 @@
 package modele;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Vector;
-
 import controleur.ControllerGeneral;
 import vue.CadreAngryBalls;
 

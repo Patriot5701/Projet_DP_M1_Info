@@ -33,6 +33,8 @@ public class EcouteurPosition implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		this.xDepart = e.getX();
 		this.yDepart = e.getY();
+		
+		System.out.println(xDepart);
 	}
 
 	@Override
