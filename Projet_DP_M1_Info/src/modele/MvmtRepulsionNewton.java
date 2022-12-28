@@ -2,22 +2,27 @@ package modele;
 
 import java.util.Vector;
 
+/**
+ * Comportement repoussant la bille face aux autres billes
+ * @author alexis
+ *
+ */
 public class MvmtRepulsionNewton extends DecorateurBille {
-
+	/**
+	 * Constructeur
+	 * @param billeDecorated : la bille decoree
+	 */
 	public MvmtRepulsionNewton(Bille billeDecorated) {
 		super(billeDecorated);
 	}
 
-	/* (non-Javadoc)
-	 * @see decorateur_angryballs.modele.Bille#gestionAcc�l�ration(java.util.Vector)
-	 */
+
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
 		this.billeDecoree.gestionAcceleration(billes);
 		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes).oppose());     // contribution de l'acceleration due a la repulsion des autres billes
 	}
 
-	//TODO
 	@Override
 	public String toString() {
 		String str = billeDecoree.toString();

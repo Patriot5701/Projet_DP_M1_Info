@@ -1,11 +1,17 @@
 package modele;
 
 import java.util.Vector;
-
 import mesmaths.cinematique.Collisions;
-
+/**
+ * Comportement franchissant le bord lors d'une collision
+ * @author clement
+ *
+ */
 public class CollisionBordFranchissement extends DecorateurBille{
-
+	/**
+	 * Constructeur
+	 * @param billeDecorated : la bille decoree
+	 */
 	public CollisionBordFranchissement(Bille billeDecorated) {
 		super(billeDecorated);
 	}
@@ -28,9 +34,7 @@ public class CollisionBordFranchissement extends DecorateurBille{
 
 	@Override
 	public String toString() {
-		String message;
-		message = billeDecoree.toString();
-		return message;
+		return billeDecoree.toString();
 	}
 
 

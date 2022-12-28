@@ -1,5 +1,10 @@
 package modele;
 
+/**
+ * Classe statique listant les differentes couleurs hexadecimales au format String
+ * @author clement
+ *
+ */
 public class Colors {
 	public static String CYAN = "#0090B6";
 	public static String RED = "#AB4B55";

@@ -5,8 +5,12 @@ import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
+/**
+ * 
+ * Bille simple sans comportement spécial
+ *
+ */
 public class BilleSimple extends Bille{
-	
 
 	public double rayon;            // rayon > 0
 	public Vecteur vitesse;
@@ -22,7 +26,13 @@ public class BilleSimple extends Bille{
 	int i;
 	long dernierInstant;
 
-	
+	/**
+	 * Constructeur
+	 * @param centre
+	 * @param rayon
+	 * @param vitesse
+	 * @param couleur
+	 */
 	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur) {
 		this.position = centre;
 		this.rayon = rayon;
@@ -66,6 +76,10 @@ public class BilleSimple extends Bille{
 	public String getColor() {
 		return this.couleur;
 	}
+	/**
+	 * Calcule la masse de la bille
+	 * @return la masse
+	 */
 	public double masse() {return ro*Geop.volumeSphere(rayon);}
 	
 	public double getMasse() {
@@ -73,6 +87,7 @@ public class BilleSimple extends Bille{
 	}
 	
 	/**
+	 * 
 	 * mise a jour de position et vitesse et+deltaT a partir de position et vitesse a l'instant t
 	 * 
 	 * modifie le vecteur position et le vecteur vitesse
@@ -80,7 +95,7 @@ public class BilleSimple extends Bille{
 	 * laisse le vecteur acceleration intact
 	 *
 	 * La bille subit par defaut un mouvement uniformement accelere
-	 **/
+	 */
 	public void deplacer(double deltaT){
 		Cinematique.mouvementUniformementAccelere( this.getPosition(), this.getVitesse(), this.getAcceleration(), deltaT);
 		this.acceleration = new Vecteur();

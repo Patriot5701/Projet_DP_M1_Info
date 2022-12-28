@@ -3,9 +3,17 @@ package modele;
 import java.util.Vector;
 import mesmaths.geometrie.base.Vecteur;
 
+/**
+ * 
+ * Classe abstraite mettant en place le DP Decorator
+ * Décore la Bille de différents comportements
+ */
 public abstract class DecorateurBille extends Bille{
 	protected Bille billeDecoree;
-	
+	/**
+	 * Constructeur
+	 * @param billeDecorated : la bille decoree
+	 */
 	public DecorateurBille(Bille billeDecorated) {
 		billeDecoree = billeDecorated;
 	}

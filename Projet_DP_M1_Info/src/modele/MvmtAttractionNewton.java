@@ -2,16 +2,21 @@ package modele;
 
 import java.util.Vector;
 
+/**
+ * Comportement attirant la bille par les autres billes
+ * @author alexis
+ *
+ */
 public class MvmtAttractionNewton extends DecorateurBille{
 
-	
+	/**
+	 * Constructeur
+	 * @param billeDecorated : la bille decoree
+	 */
 	public MvmtAttractionNewton(modele.Bille billeDecorated) {
 		super(billeDecorated);
 	}
 
-	/* (non-Javadoc)
-	 * @see decorateur_angryballs.modele.Bille#gestionAcc�l�ration(java.util.Vector)
-	 */
 	@Override
 	public void gestionAcceleration(Vector<Bille> billes)
 	{
