@@ -32,14 +32,16 @@ public class BilleSimple extends Bille{
 	 * @param rayon
 	 * @param vitesse
 	 * @param couleur
+	 * @param x
 	 */
-	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur) {
+	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur, double x) {
 		this.position = centre;
 		this.rayon = rayon;
 		this.vitesse = vitesse;
 		this.acceleration = new Vecteur();
 		this.couleur = couleur;
 		this.clef = BilleSimple.prochaineClef ++;
+		this.setXMAx(x);
 	}
 	
 	/**

@@ -16,6 +16,23 @@ public abstract class Bille {
 	 */
 	public Vecteur position;
 	/**
+	 * Largeur du cadre où se trouve la bille
+	 */
+	private double xMax;
+	/**
+	 * @return the xMax
+	 */
+	public double getXMax() {
+		return this.xMax;
+	}
+	/**
+	 * Setter de xMax
+	 * @param x : la largeur du cadre
+	 */
+	public void setXMAx(double x) {
+		this.xMax = x;
+	}
+	/**
 	 * @return the position
 	 */
 	public abstract Vecteur getPosition();

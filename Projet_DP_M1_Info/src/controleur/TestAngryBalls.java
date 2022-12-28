@@ -92,32 +92,33 @@ public class TestAngryBalls
 		//--------------- ici commence la partie a changer ---------------------------------
 
 
-		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.RED);
+		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.RED,xMax);
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
+		billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
 
 		
-		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE);
+		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE,xMax);
 		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
 		billeRepulsionRebond = new CollisionBordRebond(billeRepulsionRebond);
-		//billeRepulsionRebond = new Hurlement(billeRepulsionRebond,cadre,hurlements[choixHurlementInitial]);
+		billeRepulsionRebond = new Hurlement(billeRepulsionRebond,cadre,hurlements[choixHurlementInitial]);
 		
-		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW);
+		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW,xMax);
 		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new MvmtFrottements(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new CollisionBordRebond(billePesanteurFrottementRebond);
 		
-		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN);
+		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN,xMax);
 		billeNewtonFrottementRebond = new MvmtAttractionNewton(billeNewtonFrottementRebond);
 		billeNewtonFrottementRebond = new MvmtFrottements(billeNewtonFrottementRebond);
 		billeNewtonFrottementRebond = new CollisionBordRebond(billeNewtonFrottementRebond);
 		
-		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN);
+		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN,xMax);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
 		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
 		
 		billes.add(billePilotee);
-		billes.add(billeRepulsionRebond);
+		//billes.add(billeRepulsionRebond);
 		
 
 		
@@ -129,7 +130,7 @@ public class TestAngryBalls
 		//BilleHurlanteMvtNewtonArret billeNoire;         // cas particulier de la bille qui hurle
 		//billes.add(billeNoire = new BilleHurlanteMvtNewtonArret(p4, rayon, v4,  Color.black,hurlements[choixHurlementInitial], cadre));
 
-		cadre.addChoixHurlementListener((ItemListener) billePasseMurailles);  // A present on peut changer le son de la bille qui hurle
+		cadre.addChoixHurlementListener((ItemListener) billePilotee);  // A present on peut changer le son de la bille qui hurle
 
 		//---------------------- ici finit la partie a changer -------------------------------------------------------------
 

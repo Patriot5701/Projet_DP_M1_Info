@@ -89,11 +89,11 @@ public class OutilsBilles
 		Bille billeCourante;
 		double n = cetteBille.getVitesse().norme();
 		double y = Math.exp(-COEFF_VOLUME*n);
-//		double xMax = cadre.largeurBillard();
-//		double x1 = Math.abs(cetteBille.getPosition().x/xMax);                   /* on obtient 0 <= x1 <= 1 */ ////System.err.println("dans BilleHurlante.deplacer() : x1 =  "+ x1);
-//		double balance = 2*x1 - 1; 
+		double xMax = cetteBille.getXMax();
+		double x1 = Math.abs(cetteBille.getPosition().x/xMax);                   /* on obtient 0 <= x1 <= 1 */ ////System.err.println("dans BilleHurlante.deplacer() : x1 =  "+ x1);
+		double balance = 2*x1 - 1; 
 		double volume = 1-y;
-		double balance = 0;
+		//double balance = 0;
 		int i;
 
 		for ( i = 0 ; i < autresBilles.size(); ++i)
