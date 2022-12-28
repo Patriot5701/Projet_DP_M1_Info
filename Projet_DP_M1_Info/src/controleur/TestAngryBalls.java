@@ -68,8 +68,8 @@ public class TestAngryBalls
 		xMax = cadre.largeurBillard();      // abscisse maximal
 		yMax = cadre.hauteurBillard();      // ordonnee maximale
 
-		double rayon = 0.05*Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
-
+		//double rayon = 0.05*Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
+		double rayon = 20;
 		Vecteur p0, p1, p2, p3, p4, p5,  v0, v1, v2, v3, v4;    // les positions des centres des billes et les vecteurs vitesse au demarrage. 
 		// Elles vont etre choisies aleatoirement
 
@@ -88,15 +88,32 @@ public class TestAngryBalls
 		v2 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
 		v3 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
 		v4 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
+		
+		Vecteur centreBillepilotee = new Vecteur(300,140);
+		Vecteur centreBille1 = new Vecteur(20,100);
+		Vecteur vitesseBille = new Vecteur (0,0);
+		Vecteur centreBille2 = new Vecteur(20,140);
+		Vecteur centreBille3 = new Vecteur(20,180);
+		Vecteur centreBille4 = new Vecteur(60,120);
+		Vecteur centreBille5 = new Vecteur(60,160);
+		Vecteur centreBille6 = new Vecteur(100,140);
 
 		//--------------- ici commence la partie a changer ---------------------------------
 
 
-		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.RED,xMax);
+		//Bille billePilotee = new BilleSimple(centreBillepilotee, rayon, vitesseBille, Colors.BLACK,xMax);
+		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.BLACK,xMax);
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
 		billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
 
+//		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille, Colors.RED,xMax);
+//		Bille bille2 = new BilleSimple(centreBille2, rayon, vitesseBille, Colors.BLUE,xMax);
+//		Bille bille3 = new BilleSimple(centreBille3, rayon, vitesseBille, Colors.GREEN,xMax);
+//		Bille bille4 = new BilleSimple(centreBille4, rayon, vitesseBille, Colors.YELLOW,xMax);
+//		Bille bille5 = new BilleSimple(centreBille5, rayon, vitesseBille, Colors.ROSE,xMax);
+//		Bille bille6 = new BilleSimple(centreBille6, rayon, vitesseBille, Colors.CYAN,xMax);
+		
 		
 		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE,xMax);
 		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
@@ -118,6 +135,12 @@ public class TestAngryBalls
 		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
 		
 		billes.add(billePilotee);
+//		billes.add(bille1);
+//		billes.add(bille2);
+//		billes.add(bille3);
+//		billes.add(bille4);
+//		billes.add(bille5);
+//		billes.add(bille6);
 		//billes.add(billeRepulsionRebond);
 		
 
@@ -130,7 +153,7 @@ public class TestAngryBalls
 		//BilleHurlanteMvtNewtonArret billeNoire;         // cas particulier de la bille qui hurle
 		//billes.add(billeNoire = new BilleHurlanteMvtNewtonArret(p4, rayon, v4,  Color.black,hurlements[choixHurlementInitial], cadre));
 
-		cadre.addChoixHurlementListener((ItemListener) billePilotee);  // A present on peut changer le son de la bille qui hurle
+		
 
 		//---------------------- ici finit la partie a changer -------------------------------------------------------------
 
@@ -145,13 +168,14 @@ public class TestAngryBalls
 
 		EcouteurBoutonLancer ecouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
 		EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles); 
+		EcouteurHurlement ecouteurHurlement = new EcouteurHurlement((Hurlement) billePilotee);
 
 		//------------------------- activation des ecouteurs des boutons et ca tourne tout seul ------------------------------
 
 
 		cadre.lancerBilles.addActionListener(ecouteurBoutonLancer);             // pourrait etre remplace par Observable - Observer 
 		cadre.arreterBilles.addActionListener(ecouteurBoutonArreter);           // pourrait etre remplace par Observable - Observer
-
+		cadre.addChoixHurlementListener(ecouteurHurlement);  // A present on peut changer le son de la bille qui hurle
 
 
 	}
