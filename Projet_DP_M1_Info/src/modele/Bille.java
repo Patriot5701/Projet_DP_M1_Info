@@ -1,10 +1,7 @@
 package modele;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.Vector;
 import mesmaths.geometrie.base.Vecteur;
-import modele.OutilsBilles;
 import vue.VisitorBille;
 
 public abstract class Bille {

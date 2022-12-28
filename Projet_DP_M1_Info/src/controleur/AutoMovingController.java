@@ -9,8 +9,7 @@ public class AutoMovingController extends ControllerState{
 	}
 	
 	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
+	public void mouseReleased(MouseEvent e) {}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {

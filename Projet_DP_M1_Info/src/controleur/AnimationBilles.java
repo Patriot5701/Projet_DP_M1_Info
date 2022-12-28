@@ -28,7 +28,7 @@ public class AnimationBilles implements Runnable{
 	public AnimationBilles(Vector<Bille> billes, VueBillard vueBillard){
 		this.billes = billes;
 		this.vueBillard = vueBillard;
-		this.thread = null;     //est-ce utile ?
+		this.thread = null;
 	}
 
 	@Override

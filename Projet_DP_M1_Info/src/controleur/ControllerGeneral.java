@@ -1,7 +1,5 @@
 package controleur;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,8 +10,6 @@ import vue.CadreAngryBalls;
 public class ControllerGeneral implements MouseListener, MouseMotionListener{
 	BillePilotee billePilotee;	//Reference sur modele
 	CadreAngryBalls cadre;		//Reference sur vue
-	
-	EcouteurPosition ecouteurPosition;
 	
 	public ControllerState currentController;	//Le controleur qui voyage à travers le graphe orienté
 	MouseFollowingController mouseFollowingController;	//Associé à l'état "Bille Attrapée"
@@ -29,7 +25,6 @@ public class ControllerGeneral implements MouseListener, MouseMotionListener{
 	}
 	
 	private void installControllers() {
-		this.ecouteurPosition = new EcouteurPosition(cadre);
 		
 		//Instanciation des controleurs
 		this.mouseFollowingController = new MouseFollowingController(this, null, null);
@@ -69,10 +64,9 @@ public class ControllerGeneral implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseExited(MouseEvent e) {}
 
+	//Inutile
 	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseDragged(MouseEvent e) {}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
