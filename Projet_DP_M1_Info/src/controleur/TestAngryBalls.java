@@ -1,9 +1,8 @@
 package controleur;
 
-import java.awt.Color;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.Vector;
-
 import mesmaths.geometrie.base.Vecteur;
 import modele.Bille;
 import modele.BillePilotee;
@@ -11,6 +10,7 @@ import modele.BilleSimple;
 import modele.CollisionBordFranchissement;
 import modele.CollisionBordRebond;
 import modele.Colors;
+import modele.Hurlement;
 import modele.MvmtAttractionNewton;
 import modele.MvmtAttractionPesanteur;
 import modele.MvmtFrottements;
@@ -37,8 +37,7 @@ public class TestAngryBalls
 		File file = new File(""); // la ou la JVM est lancee : racine du projet
 
 		//TODO Changer le path
-		File repertoireSon = new File(file.getAbsoluteFile(),
-				"src"+File.separatorChar+"bruits");
+		File repertoireSon = new File(file.getAbsoluteFile(),"src"+File.separatorChar+"bruits");
 		System.out.println("repertoire son = " + repertoireSon);
 
 		//-------------------- chargement des sons pour les hurlements --------------------------------------
@@ -92,13 +91,16 @@ public class TestAngryBalls
 
 		//--------------- ici commence la partie a changer ---------------------------------
 
+
 		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.RED);
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
+
 		
 		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE);
 		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
 		billeRepulsionRebond = new CollisionBordRebond(billeRepulsionRebond);
+		//billeRepulsionRebond = new Hurlement(billeRepulsionRebond,cadre,hurlements[choixHurlementInitial]);
 		
 		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW);
 		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
@@ -112,15 +114,18 @@ public class TestAngryBalls
 		
 		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
-		billePasseMurailles = new CollisionBordRebond(billePasseMurailles);
+		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
+		//billePasseMurailles = new CollisionBordRebond(billePasseMurailles);
 		
 		
 		//billes.add(billePasseMurailles);
 //		billes.add(billeNewtonFrottementRebond);
+
 		//billes.add(billePesanteurFrottementRebond);
 		billes.add(billePilotee);
 		billes.add(billeRepulsionRebond);
 		
+
 		
 		//billes.add(new BilleMvtRURebond(p0, rayon, v0, Color.red));
 		//billes.add(new BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
@@ -130,7 +135,7 @@ public class TestAngryBalls
 		//BilleHurlanteMvtNewtonArret billeNoire;         // cas particulier de la bille qui hurle
 		//billes.add(billeNoire = new BilleHurlanteMvtNewtonArret(p4, rayon, v4,  Color.black,hurlements[choixHurlementInitial], cadre));
 
-		//cadre.addChoixHurlementListener(billeNoire);  // A present on peut changer le son de la bille qui hurle
+		cadre.addChoixHurlementListener((ItemListener) billePasseMurailles);  // A present on peut changer le son de la bille qui hurle
 
 		//---------------------- ici finit la partie a changer -------------------------------------------------------------
 

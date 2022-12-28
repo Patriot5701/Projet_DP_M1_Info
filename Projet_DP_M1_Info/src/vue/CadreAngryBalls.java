@@ -25,12 +25,19 @@ public class CadreAngryBalls extends Frame implements VueBillard
 	public Button lancerBilles, arreterBilles;
 	Panel haut, centre, bas, ligneBoutonsLancerArret;
 	PanneauChoixHurlement ligneBoutonsChoixHurlement;
+	GraphicsDevice myDevice;
 
 	EcouteurTerminaison ecouteurTerminaison;
 
 	public CadreAngryBalls(String titre, String message, Vector<Bille> billes, SonLong [] hurlements, int choixHurlementInitial) throws HeadlessException
 	{
 		super(titre);
+		
+		GraphicsEnvironment environnement = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		myDevice = environnement.getDefaultScreenDevice();
+		
+//		if(myDevice.isFullScreenSupported()) this.setFullScreen(); // Si on veut tester le fullscreen
+//		else Outils.place(this, 0.33, 0.33, 0.5, 0.5);
 		Outils.place(this, 0.33, 0.33, 0.5, 0.5);
 		this.ecouteurTerminaison = new EcouteurTerminaison(this);
 
@@ -83,7 +90,7 @@ public class CadreAngryBalls extends Frame implements VueBillard
 	@Override
 	public void miseAJour()
 	{
-		this.billard.repaint();
+		this.billard.myRenderingLoop();
 	}
 
 	/* (non-Javadoc)
@@ -94,6 +101,8 @@ public class CadreAngryBalls extends Frame implements VueBillard
 	{
 		this.setVisible(true);
 	}
+	
+	public void setFullScreen() { myDevice.setFullScreenWindow(this); }
 
 	public void addChoixHurlementListener(ItemListener ecouteurChoixHurlant)
 	{

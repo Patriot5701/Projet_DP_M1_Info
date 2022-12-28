@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.Vector;
+
 import mesmaths.geometrie.base.Vecteur;
 import vue.VisitorBille;
 
@@ -39,7 +40,7 @@ public abstract class Bille {
 	public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
 
 	
-	public void accepteDraw(VisitorBille visitor) {
+	public void accepteDraw(VisitorBille visitor){
 		visitor.visitDraw(this);
 	}
 	
