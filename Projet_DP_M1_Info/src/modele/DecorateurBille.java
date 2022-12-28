@@ -1,10 +1,6 @@
 package modele;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.Vector;
-
-import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
 public abstract class DecorateurBille extends Bille{

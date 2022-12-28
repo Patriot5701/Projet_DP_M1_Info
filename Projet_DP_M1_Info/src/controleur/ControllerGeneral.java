@@ -50,6 +50,7 @@ public class ControllerGeneral implements MouseListener, MouseMotionListener{
 	public void mouseReleased(MouseEvent e) {
 		this.currentController.mouseReleased(e); //Transmet gestion evenement au controlleur courant
 	}
+
 	
 	//Inutile
 	@Override
@@ -66,12 +67,11 @@ public class ControllerGeneral implements MouseListener, MouseMotionListener{
 
 	//Inutile
 	@Override
-	public void mouseDragged(MouseEvent e) {}
+	public void mouseDragged(MouseEvent e) {this.currentController.mouseDragged(e);}
 
+	//Inutile
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		this.currentController.mouseMoved(e);
-	}
+	public void mouseMoved(MouseEvent e) {}
 
 
 }

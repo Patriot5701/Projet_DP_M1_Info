@@ -115,13 +115,7 @@ public class TestAngryBalls
 		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
 		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
-		//billePasseMurailles = new CollisionBordRebond(billePasseMurailles);
 		
-		
-		//billes.add(billePasseMurailles);
-//		billes.add(billeNewtonFrottementRebond);
-
-		//billes.add(billePesanteurFrottementRebond);
 		billes.add(billePilotee);
 		billes.add(billeRepulsionRebond);
 		

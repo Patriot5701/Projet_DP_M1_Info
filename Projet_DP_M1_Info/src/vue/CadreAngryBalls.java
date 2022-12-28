@@ -2,7 +2,6 @@ package vue;
 
 import java.awt.*;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import modele.Bille;
