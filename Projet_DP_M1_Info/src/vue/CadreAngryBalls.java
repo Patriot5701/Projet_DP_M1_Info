@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.*;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import modele.Bille;
@@ -20,7 +21,7 @@ import outilsvues.Outils;
 public class CadreAngryBalls extends Frame implements VueBillard
 {
 	TextField presentation;
-	Billard billard;
+	public Billard billard;
 	public Button lancerBilles, arreterBilles;
 	Panel haut, centre, bas, ligneBoutonsLancerArret;
 	PanneauChoixHurlement ligneBoutonsChoixHurlement;
@@ -39,7 +40,6 @@ public class CadreAngryBalls extends Frame implements VueBillard
 //		else Outils.place(this, 0.33, 0.33, 0.5, 0.5);
 		Outils.place(this, 0.33, 0.33, 0.5, 0.5);
 		this.ecouteurTerminaison = new EcouteurTerminaison(this);
-
 
 		this.haut = new Panel(); this.haut.setBackground(Color.LIGHT_GRAY);
 		this.add(this.haut,BorderLayout.NORTH);

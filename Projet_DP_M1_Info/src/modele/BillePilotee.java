@@ -1,18 +1,22 @@
 package modele;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.util.Vector;
+import controleur.ControllerGeneral;
+import vue.CadreAngryBalls;
 
-public class BillePilotee extends DecorateurBille implements MouseMotionListener {
+public class BillePilotee extends DecorateurBille {
+	ControllerGeneral controllerGen;
 
-	public BillePilotee(Bille billeDecorated) {
+	public BillePilotee(Bille billeDecorated, CadreAngryBalls cadre) {
 		super(billeDecorated);
+		
+		controllerGen = new ControllerGeneral(this, cadre);
 	}
 
 	@Override
 	public void gestionAcceleration(Vector<Bille> billes) {
 		this.billeDecoree.gestionAcceleration(billes);
+		this.getAcceleration().ajoute(this.controllerGen.currentController.treat());
 	}
 
 	@Override
@@ -32,14 +36,5 @@ public class BillePilotee extends DecorateurBille implements MouseMotionListener
 		return str + ", Comportement : attrapable";
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		
-	}
 
 }

@@ -20,9 +20,13 @@ public class Billard extends Canvas {
 	Vector<Bille> billes;
 	VisitorBille visitor = new VisitorBilleAwt(getGraphics());
 
+
+
 	public Billard(Vector<Bille> billes) {
 		this.billes = billes;
+
 	}
+
 
 
 

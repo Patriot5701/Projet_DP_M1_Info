@@ -93,11 +93,11 @@ public class OutilsBille
 	public static Vecteur gestionAccelerationNewton(Bille cetteBille, Vector<Bille> billes)
 	{
 
-		//--- on r�cup�re d'abord dans autresBilles toutes les billes sauf celle-ci ----
+		//--- on recupere d'abord dans autresBilles toutes les billes sauf celle-ci ----
 
 		Vector<Bille> autresBilles = OutilsBille.autresBilles(cetteBille, billes);
 
-		//-------------- � present on recupere les masses et les positions des autres billes ------------------
+		//-------------- a present on recupere les masses et les positions des autres billes ------------------
 		int i;
 		Bille billeCourante;
 
@@ -113,7 +113,7 @@ public class OutilsBille
 			C[i] = billeCourante.getPosition();
 		}
 
-		//------------------ � pr�sent on calcule le champ de gravite exerce par les autres billes sur cette bille ------------------
+		//------------------ a present on calcule le champ de gravite exerce par les autres billes sur cette bille ------------------
 
 		return  MecaniquePoint.champGraviteGlobal( cetteBille.getPosition(),  masses, C);
 	}

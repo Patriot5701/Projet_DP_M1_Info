@@ -6,12 +6,8 @@ import mesmaths.geometrie.base.Vecteur;
 import vue.VisitorBille;
 
 public abstract class Bille {
-	
-	/**
-	 * @return the graphic library
-	 */
-	//public abstract String getLibrary();
 
+	public Vecteur position;   // centre de la bille
 	/**
 	 * @return the position
 	 */

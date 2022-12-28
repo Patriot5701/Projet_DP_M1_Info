@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.Vector;
 import mesmaths.geometrie.base.Vecteur;
 import modele.Bille;
+import modele.BillePilotee;
 import modele.BilleSimple;
 import modele.CollisionBordFranchissement;
 import modele.CollisionBordRebond;
@@ -69,7 +70,7 @@ public class TestAngryBalls
 
 		double rayon = 0.05*Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
 
-		Vecteur p0, p1, p2, p3, p4,  v0, v1, v2, v3, v4;    // les positions des centres des billes et les vecteurs vitesse au demarrage. 
+		Vecteur p0, p1, p2, p3, p4, p5,  v0, v1, v2, v3, v4;    // les positions des centres des billes et les vecteurs vitesse au demarrage. 
 		// Elles vont etre choisies aleatoirement
 
 		//------------------- creation des vecteurs position des billes ---------------------------------
@@ -90,10 +91,11 @@ public class TestAngryBalls
 
 		//--------------- ici commence la partie a changer ---------------------------------
 
-		Bille billeRebondNewton = new BilleSimple(p0, rayon, v0, Colors.RED);
-		billeRebondNewton = new CollisionBordRebond(billeRebondNewton);
-		billeRebondNewton = new MvmtAttractionNewton(billeRebondNewton);
-		//billeRebondNewton = new Hurlement(billeRebondNewton,cadre,hurlements[choixHurlementInitial]);
+
+		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.RED);
+		billePilotee = new BillePilotee(billePilotee, cadre);
+		billePilotee = new CollisionBordRebond(billePilotee);
+
 		
 		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE);
 		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
@@ -115,11 +117,15 @@ public class TestAngryBalls
 		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
 		//billePasseMurailles = new CollisionBordRebond(billePasseMurailles);
 		
+		
 		//billes.add(billePasseMurailles);
 //		billes.add(billeNewtonFrottementRebond);
-		billes.add(billePesanteurFrottementRebond);
-		billes.add(billeRebondNewton);
-		//billes.add(billeRepulsionRebond);
+
+		//billes.add(billePesanteurFrottementRebond);
+		billes.add(billePilotee);
+		billes.add(billeRepulsionRebond);
+		
+
 		
 		//billes.add(new BilleMvtRURebond(p0, rayon, v0, Color.red));
 		//billes.add(new BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
