@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Vector;
+
 import mesmaths.cinematique.Collisions;
 /**
  * Comportement bloquant la bille lors d'une collision avec le bord
@@ -21,6 +23,7 @@ public class CollisionBordBlocage extends DecorateurBille{
 		Collisions.collisionBilleContourAvecArretHorizontal(this.getPosition(), this.getRayon(), this.getVitesse(), abscisseCoinHautGauche, largeur);
 		Collisions.collisionBilleContourAvecArretVertical(this.getPosition(), this.getRayon(), this.getVitesse(), ordonneeCoinHautGauche, hauteur);
 	}
+	
 
 	@Override
 	public String toString() {

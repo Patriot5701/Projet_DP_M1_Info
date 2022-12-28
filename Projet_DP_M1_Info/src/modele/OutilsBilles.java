@@ -77,7 +77,7 @@ public class OutilsBilles
 		//-------------- on suppose qu'il ne peut y avoir de collision qui implique plus de deux billes a la fois ---------------
 		try
 		{
-			sonBref = new SonBrefJavax(repertoireSon,"impact.wav",0,10);
+			sonBref = new SonBrefJavax(repertoireSon,"impact.wav",0,15);
 		}
 		catch (Exception e)
 		{
@@ -100,10 +100,10 @@ public class OutilsBilles
 		{
 			billeCourante = autresBilles.get(i);
 			if (Collisions.CollisionBilleBille(    cetteBille.getPosition(),    cetteBille.getRayon(),    cetteBille.getVitesse(),    cetteBille.getMasse(), 
-					billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.getMasse()))
-				
+					billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.getMasse())) {
 				OutilsBilles.sonBref.joue(volume, balance);
 				return true; 
+			}
 		}
 		return false;
 	}

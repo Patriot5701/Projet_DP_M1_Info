@@ -29,10 +29,6 @@ public class BillePilotee extends DecorateurBille {
 		this.getAcceleration().ajoute(this.controllerGen.currentController.treat());
 	}
 
-	@Override
-	public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
-		return billeDecoree.gestionCollisionBilleBille(billes);
-	}
 
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,

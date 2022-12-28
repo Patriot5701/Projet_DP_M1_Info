@@ -32,10 +32,6 @@ public class MvmtAttractionNewton extends DecorateurBille{
 	}
 
 
-	@Override
-	public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
-		return billeDecoree.gestionCollisionBilleBille(billes);
-	}
 
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,

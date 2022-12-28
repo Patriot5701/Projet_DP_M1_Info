@@ -91,28 +91,42 @@ public class TestAngryBalls
 		
 		Vecteur centreBillepilotee = new Vecteur(300,140);
 		Vecteur centreBille1 = new Vecteur(20,100);
-		Vecteur vitesseBille = new Vecteur (0,0);
+		
 		Vecteur centreBille2 = new Vecteur(20,140);
 		Vecteur centreBille3 = new Vecteur(20,180);
 		Vecteur centreBille4 = new Vecteur(60,120);
 		Vecteur centreBille5 = new Vecteur(60,160);
 		Vecteur centreBille6 = new Vecteur(100,140);
-
+		
+		Vecteur vitesseBille = new Vecteur (0,0);
+		Vecteur vitesseBille1 = new Vecteur (0,0);
+		Vecteur vitesseBille2 = new Vecteur (0,0);
+		Vecteur vitesseBille3 = new Vecteur (0,0);
+		Vecteur vitesseBille4 = new Vecteur (0,0);
+		Vecteur vitesseBille5 = new Vecteur (0,0);
+		Vecteur vitesseBille6 = new Vecteur (0,0);
 		//--------------- ici commence la partie a changer ---------------------------------
 
 
-		//Bille billePilotee = new BilleSimple(centreBillepilotee, rayon, vitesseBille, Colors.BLACK,xMax);
-		Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.BLACK,xMax);
+		Bille billePilotee = new BilleSimple(centreBillepilotee, rayon, vitesseBille, Colors.BLACK,xMax);
+		//Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.BLACK,xMax);
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
-		billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
+		//billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
 
-//		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille, Colors.RED,xMax);
-//		Bille bille2 = new BilleSimple(centreBille2, rayon, vitesseBille, Colors.BLUE,xMax);
-//		Bille bille3 = new BilleSimple(centreBille3, rayon, vitesseBille, Colors.GREEN,xMax);
-//		Bille bille4 = new BilleSimple(centreBille4, rayon, vitesseBille, Colors.YELLOW,xMax);
-//		Bille bille5 = new BilleSimple(centreBille5, rayon, vitesseBille, Colors.ROSE,xMax);
-//		Bille bille6 = new BilleSimple(centreBille6, rayon, vitesseBille, Colors.CYAN,xMax);
+		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille1, Colors.RED,xMax);
+		bille1 = new CollisionBordRebond(bille1);
+		Bille bille2 = new BilleSimple(centreBille2, rayon, vitesseBille2, Colors.BLUE,xMax);
+		bille2 = new CollisionBordRebond(bille2);
+		Bille bille3 = new BilleSimple(centreBille3, rayon, vitesseBille3, Colors.GREEN,xMax);
+		bille3 = new CollisionBordRebond(bille3);
+		Bille bille4 = new BilleSimple(centreBille4, rayon, vitesseBille4, Colors.YELLOW,xMax);
+		bille4 = new CollisionBordRebond(bille4);
+		Bille bille5 = new BilleSimple(centreBille5, rayon, vitesseBille5, Colors.ROSE,xMax);
+		bille5 = new CollisionBordRebond(bille5);
+		Bille bille6 = new BilleSimple(centreBille6, rayon, vitesseBille6, Colors.CYAN,xMax);
+		bille6 = new CollisionBordRebond(bille6);
+		
 		
 		
 		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE,xMax);
@@ -135,12 +149,12 @@ public class TestAngryBalls
 		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
 		
 		billes.add(billePilotee);
-//		billes.add(bille1);
-//		billes.add(bille2);
-//		billes.add(bille3);
-//		billes.add(bille4);
-//		billes.add(bille5);
-//		billes.add(bille6);
+		billes.add(bille1);
+		billes.add(bille2);
+		billes.add(bille3);
+		billes.add(bille4);
+		billes.add(bille5);
+		billes.add(bille6);
 		//billes.add(billeRepulsionRebond);
 		
 
@@ -168,14 +182,14 @@ public class TestAngryBalls
 
 		EcouteurBoutonLancer ecouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
 		EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles); 
-		EcouteurHurlement ecouteurHurlement = new EcouteurHurlement((Hurlement) billePilotee);
+		//EcouteurHurlement ecouteurHurlement = new EcouteurHurlement((Hurlement) billePilotee);
 
 		//------------------------- activation des ecouteurs des boutons et ca tourne tout seul ------------------------------
 
 
 		cadre.lancerBilles.addActionListener(ecouteurBoutonLancer);             // pourrait etre remplace par Observable - Observer 
 		cadre.arreterBilles.addActionListener(ecouteurBoutonArreter);           // pourrait etre remplace par Observable - Observer
-		cadre.addChoixHurlementListener(ecouteurHurlement);  // A present on peut changer le son de la bille qui hurle
+		//cadre.addChoixHurlementListener(ecouteurHurlement);  // A present on peut changer le son de la bille qui hurle
 
 
 	}

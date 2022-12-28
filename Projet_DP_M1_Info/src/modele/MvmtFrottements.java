@@ -28,10 +28,6 @@ public class MvmtFrottements extends DecorateurBille{
 		return str + ", Comportement : freinage dû aux frottements dans l'air ";
 	}
 
-	@Override
-	public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
-		return billeDecoree.gestionCollisionBilleBille(billes);
-	}
 
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
