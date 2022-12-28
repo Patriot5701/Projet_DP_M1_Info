@@ -3,9 +3,18 @@ package controleur;
 import java.awt.event.MouseEvent;
 
 import mesmaths.geometrie.base.Vecteur;
-
+/**
+ * Etat : l'utilisateur controle la bille
+ * @author clement
+ *
+ */
 public class MouseFollowingController extends ControllerState{
-
+	/**
+	 * Constructeur
+	 * @param ctrlrGen : Controleur general
+	 * @param follow : Controleur suivant
+	 * @param prev : Controleur precedent
+	 */
 	public MouseFollowingController(ControllerGeneral ctrlrGen, ControllerState follow, ControllerState prev) {
 		super(ctrlrGen, follow, prev);
 	}

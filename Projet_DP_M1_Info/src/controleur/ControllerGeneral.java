@@ -7,14 +7,24 @@ import java.awt.event.MouseMotionListener;
 import modele.BillePilotee;
 import vue.CadreAngryBalls;
 
+/**
+ * Controleur general mettant en place le DP State : le controle de la bille par l'utilisateur
+ * @author clement
+ *
+ */
 public class ControllerGeneral implements MouseListener, MouseMotionListener{
 	BillePilotee billePilotee;	//Reference sur modele
-	CadreAngryBalls cadre;		//Reference sur vue
+	private CadreAngryBalls cadre;		//Reference sur vue
 	
 	public ControllerState currentController;	//Le controleur qui voyage à travers le graphe orienté
-	MouseFollowingController mouseFollowingController;	//Associé à l'état "Bille Attrapée"
-	AutoMovingController autoMovingController;	//Associé à l'état "Bille Lancée"
+	private MouseFollowingController mouseFollowingController;	//Associé à l'état "Controle"
+	private AutoMovingController autoMovingController;	//Associé à l'état "Non controle"
 	
+	/**
+	 * Constructeur
+	 * @param billePilotee
+	 * @param cadre
+	 */
 	public ControllerGeneral(BillePilotee billePilotee, CadreAngryBalls cadre) {
 		this.cadre = cadre;
 		this.billePilotee = billePilotee;
@@ -23,7 +33,9 @@ public class ControllerGeneral implements MouseListener, MouseMotionListener{
 		this.cadre.billard.addMouseListener(this);
 		this.cadre.billard.addMouseMotionListener(this);
 	}
-	
+	/**
+	 * Installe les controleurs 
+	 */
 	private void installControllers() {
 		
 		//Instanciation des controleurs
@@ -36,7 +48,10 @@ public class ControllerGeneral implements MouseListener, MouseMotionListener{
 		//On place le contrôleur courant au premier état du graphe
 		this.currentController = this.autoMovingController;
 	}
-	
+	/**
+	 * Change de controleur actuel
+	 * @param controller
+	 */
 	public void setCurrentController(ControllerState controller) {
 		this.currentController = controller;
 	}
