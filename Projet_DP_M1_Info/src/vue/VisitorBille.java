@@ -12,5 +12,14 @@ public interface VisitorBille {
 	 * @param bille
 	 */
 	public void visitDraw(Bille bille);
+	
+	/**
+	 * Chargé de renvoyer la largeur max du cadre
+	 * @param bille
+	 * @return double
+	 */
+	public double visitMaxWidth();
+	
+	
 
 }

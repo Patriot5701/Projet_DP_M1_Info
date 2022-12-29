@@ -10,28 +10,21 @@ import vue.VisitorBille;
  * Classe abstraite représentant une Bille
  */
 public abstract class Bille {
+	VisitorBille visitor;
+	/**
+	 * Largeur max du billard
+	 */
+	public double xMax;
 
 	/**
 	 * Position du centre de la bille
 	 */
 	public Vecteur position;
 	/**
-	 * Largeur du cadre où se trouve la bille
+	 * 
+	 * @return la largeur max du billard
 	 */
-	private double xMax;
-	/**
-	 * @return the xMax
-	 */
-	public double getXMax() {
-		return this.xMax;
-	}
-	/**
-	 * Setter de xMax
-	 * @param x : la largeur du cadre
-	 */
-	public void setXMAx(double x) {
-		this.xMax = x;
-	}
+	public abstract double getXMax();
 	/**
 	 * @return the position
 	 */
@@ -80,13 +73,6 @@ public abstract class Bille {
 	 */
 	public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
 
-	/**
-	 * Charge le visiteur en paramètre de dessiner la bille
-	 * @param visitor : le visiteur chargé de dessiner avec sa librairie graphique
-	 */
-	public void accepteDraw(VisitorBille visitor){
-		visitor.visitDraw(this);
-	}
 	public abstract String toString();
 	/**
 	 * 
@@ -98,5 +84,24 @@ public abstract class Bille {
 	 * @param deltaT
 	 */
 	public abstract void deplacer(double deltaT);
+	
+	public abstract VisitorBille getVisitor();
+	
+	/**
+	 * Charge le visiteur en paramètre de dessiner la bille
+	 * @param visitor : le visiteur chargé de dessiner avec sa librairie graphique
+	 */
+	public void accepteDraw(VisitorBille visitor){
+		visitor.visitDraw(this);
+	}
+	
+	/**
+	 * 
+	 * @param visitor : le visiteur chargé de renvoyer la largeur maximale de son billard
+	 * @return
+	 */
+	public double accepteLargeurBillard(VisitorBille visitor) {
+		return visitor.visitMaxWidth();
+	}
 
 }

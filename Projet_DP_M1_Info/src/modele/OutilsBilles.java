@@ -69,7 +69,7 @@ public class OutilsBilles
 	 * */
 	public static  boolean gestionCollisionBilleBille(Bille cetteBille, Vector<Bille> billes)
 	{
-		//--- on r�cup�re d'abord dans autresBilles toutes les billes sauf cetteBille ----
+		//--- on recupere d'abord dans autresBilles toutes les billes sauf cetteBille ----
 
 		Vector<Bille> autresBilles = OutilsBilles.autresBilles(cetteBille, billes);
 

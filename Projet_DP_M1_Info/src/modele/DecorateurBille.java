@@ -2,6 +2,7 @@ package modele;
 
 import java.util.Vector;
 import mesmaths.geometrie.base.Vecteur;
+import vue.VisitorBille;
 
 /**
  * 
@@ -16,6 +17,12 @@ public abstract class DecorateurBille extends Bille{
 	 */
 	public DecorateurBille(Bille billeDecorated) {
 		billeDecoree = billeDecorated;
+	}
+	public VisitorBille getVisitor() {
+		return this.billeDecoree.getVisitor();
+	}
+	public double getXMax() {
+		return this.billeDecoree.getXMax();
 	}
 
 	public Vecteur getPosition(){

@@ -17,6 +17,8 @@ import modele.MvmtFrottements;
 import modele.MvmtRepulsionNewton;
 import musique.SonLong;
 import vue.CadreAngryBalls;
+import vue.VisitorBille;
+import vue.VisitorBilleAwt;
 
 
 /**
@@ -107,46 +109,47 @@ public class TestAngryBalls
 		Vecteur vitesseBille6 = new Vecteur (0,0);
 		//--------------- ici commence la partie a changer ---------------------------------
 
+		VisitorBille visitor = new VisitorBilleAwt(cadre.getGraphics(), cadre);
 
-		Bille billePilotee = new BilleSimple(centreBillepilotee, rayon, vitesseBille, Colors.BLACK,xMax);
+		Bille billePilotee = new BilleSimple(centreBillepilotee, rayon, vitesseBille, Colors.BLACK, visitor);
 		//Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.BLACK,xMax);
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
 		//billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
 
-		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille1, Colors.RED,xMax);
+		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille1, Colors.RED, visitor);
 		bille1 = new CollisionBordRebond(bille1);
-		Bille bille2 = new BilleSimple(centreBille2, rayon, vitesseBille2, Colors.BLUE,xMax);
+		Bille bille2 = new BilleSimple(centreBille2, rayon, vitesseBille2, Colors.BLUE, visitor);
 		bille2 = new CollisionBordRebond(bille2);
-		Bille bille3 = new BilleSimple(centreBille3, rayon, vitesseBille3, Colors.GREEN,xMax);
+		Bille bille3 = new BilleSimple(centreBille3, rayon, vitesseBille3, Colors.GREEN, visitor);
 		bille3 = new CollisionBordRebond(bille3);
-		Bille bille4 = new BilleSimple(centreBille4, rayon, vitesseBille4, Colors.YELLOW,xMax);
+		Bille bille4 = new BilleSimple(centreBille4, rayon, vitesseBille4, Colors.YELLOW, visitor);
 		bille4 = new CollisionBordRebond(bille4);
-		Bille bille5 = new BilleSimple(centreBille5, rayon, vitesseBille5, Colors.ROSE,xMax);
+		Bille bille5 = new BilleSimple(centreBille5, rayon, vitesseBille5, Colors.ROSE, visitor);
 		bille5 = new CollisionBordRebond(bille5);
-		Bille bille6 = new BilleSimple(centreBille6, rayon, vitesseBille6, Colors.CYAN,xMax);
+		Bille bille6 = new BilleSimple(centreBille6, rayon, vitesseBille6, Colors.CYAN, visitor);
 		bille6 = new CollisionBordRebond(bille6);
 		
 		
 		
-		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE,xMax);
+		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE, visitor);
 		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
 		billeRepulsionRebond = new CollisionBordRebond(billeRepulsionRebond);
-		billeRepulsionRebond = new Hurlement(billeRepulsionRebond,cadre,hurlements[choixHurlementInitial]);
+		billeRepulsionRebond = new Hurlement(billeRepulsionRebond,hurlements[choixHurlementInitial]);
 		
-		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW,xMax);
+		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW, visitor);
 		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new MvmtFrottements(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new CollisionBordRebond(billePesanteurFrottementRebond);
 		
-		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN,xMax);
+		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN, visitor);
 		billeNewtonFrottementRebond = new MvmtAttractionNewton(billeNewtonFrottementRebond);
 		billeNewtonFrottementRebond = new MvmtFrottements(billeNewtonFrottementRebond);
 		billeNewtonFrottementRebond = new CollisionBordRebond(billeNewtonFrottementRebond);
 		
-		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN,xMax);
+		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN, visitor);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
-		billePasseMurailles = new Hurlement(billePasseMurailles,cadre,hurlements[choixHurlementInitial]);
+		billePasseMurailles = new Hurlement(billePasseMurailles,hurlements[choixHurlementInitial]);
 		
 		billes.add(billePilotee);
 		billes.add(bille1);

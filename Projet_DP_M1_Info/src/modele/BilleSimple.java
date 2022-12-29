@@ -4,6 +4,7 @@ import java.util.Vector;
 import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
+import vue.VisitorBille;
 
 /**
  * 
@@ -32,16 +33,27 @@ public class BilleSimple extends Bille{
 	 * @param rayon
 	 * @param vitesse
 	 * @param couleur
-	 * @param x
 	 */
-	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur, double x) {
+	public BilleSimple(Vecteur centre, double rayon, Vecteur vitesse, String couleur, VisitorBille visitor) {
 		this.position = centre;
 		this.rayon = rayon;
 		this.vitesse = vitesse;
 		this.acceleration = new Vecteur();
 		this.couleur = couleur;
 		this.clef = BilleSimple.prochaineClef ++;
-		this.setXMAx(x);
+		this.visitor = visitor;
+		this.xMax = accepteLargeurBillard(visitor);
+	}
+	
+	public VisitorBille getVisitor() {
+		return this.visitor;
+	}
+	/**
+	 * 
+	 * @return la largeur max du billard
+	 */
+	public double getXMax() {
+		return this.xMax;
 	}
 	
 	/**

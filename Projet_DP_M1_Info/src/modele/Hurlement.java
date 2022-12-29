@@ -1,15 +1,10 @@
 package modele;
 
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Vector;
-
-import controleur.EcouteurBoutonLancer;
-import controleur.EcouteurHurlement;
 import musique.SonLong;
 import vue.BoutonChoixHurlement;
 import vue.CadreAngryBalls;
-import vue.VueBillard;
+import vue.VisitorBille;
 
 /**
  * Comportement ajoutant le hurlement
@@ -20,7 +15,6 @@ public class Hurlement extends DecorateurBille{
 	private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */
 	public static final int DELAI_MAX = 150;    /* delai maximum de rafraichissement du son. en millisecondes */
 	private static final double COEFF_VOLUME = 10;      // plus la valeur est grande, plus le son augmente rapidement en fct de la vitesse de la boule 
-	CadreAngryBalls cadre;
 	public SonLong sonLong;
 	int i;
 	long dernierInstant;  
@@ -28,14 +22,13 @@ public class Hurlement extends DecorateurBille{
 	/**
 	 * Constructeur
 	 * @param billeDecorated : la bille decoree
-	 * @param cadre : le cadre
 	 * @param sonLong : le son du hurlement
+	 * @param visitor : le Visiteur
 	 */
-	public Hurlement(Bille billeDecorated,CadreAngryBalls cadre, SonLong sonLong) {
+	public Hurlement(Bille billeDecorated, SonLong sonLong) {
 		super(billeDecorated);
 		i = 0;
 		this.sonLong = sonLong;
-		this.cadre = cadre;
 		dernierInstant = System.currentTimeMillis();
 	}
 	
@@ -43,7 +36,7 @@ public class Hurlement extends DecorateurBille{
 	public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
 		double n = this.getVitesse().norme();
 		double y = Math.exp(-COEFF_VOLUME*n);
-		double xMax = cadre.largeurBillard();
+		double xMax = accepteLargeurBillard(this.getVisitor());
 		double x1 = Math.abs(this.getPosition().x/xMax);                   /* on obtient 0 <= x1 <= 1 */ ////System.err.println("dans BilleHurlante.deplacer() : x1 =  "+ x1);
 		double balance = 2*x1 - 1; 
 		double volume = 1-y;

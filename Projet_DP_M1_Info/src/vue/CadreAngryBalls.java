@@ -53,7 +53,7 @@ public class CadreAngryBalls extends Frame implements VueBillard
 		this.haut.add(this.presentation);
 
 		//this.billard = new Billard(billes, this);
-		this.billard = new Billard(billes);
+		this.billard = new Billard(billes, this);
 		this.add(this.billard);
 
 		//------------------- placement des composants du bas du cadre -------------------------------

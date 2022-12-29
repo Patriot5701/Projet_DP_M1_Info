@@ -18,16 +18,15 @@ import java.awt.image.BufferStrategy;
 public class Billard extends Canvas {
 
 	Vector<Bille> billes;
-	VisitorBille visitor = new VisitorBilleAwt(getGraphics());
+	VisitorBille visitor;
+	CadreAngryBalls cadre;
 
-
-
-	public Billard(Vector<Bille> billes) {
+	public Billard(Vector<Bille> billes, CadreAngryBalls cadre) {
 		this.billes = billes;
+		this.cadre = cadre;
+		this.visitor = new VisitorBilleAwt(getGraphics(), cadre); 
 
 	}
-
-
 
 
 	public void myRenderingLoop() {
@@ -39,7 +38,7 @@ public class Billard extends Canvas {
 		BufferStrategy stratégie = this.getBufferStrategy();
 		Graphics graphics = stratégie.getDrawGraphics();
 		// le graphics sert à dessiner sur le tampon
-		visitor = new VisitorBilleAwt(graphics);
+		visitor = new VisitorBilleAwt(graphics, this.cadre);
 		for (int i = 0; i < this.billes.size(); ++i) {
 			this.billes.get(i).accepteDraw(visitor);
 		}

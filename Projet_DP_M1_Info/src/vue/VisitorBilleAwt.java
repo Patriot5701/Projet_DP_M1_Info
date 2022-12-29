@@ -7,17 +7,19 @@ import modele.Bille;
 
 /**
  * Visteur AWT de la bille
- * @author cleme
+ * @author clement
  *
  */
 public class VisitorBilleAwt implements VisitorBille{
-	Graphics graphics;
+	private Graphics graphics;
+	private CadreAngryBalls cadre;
 	/**
 	 * Constructeur
 	 * @param graphics
 	 */
-	public VisitorBilleAwt(Graphics graphics) {
+	public VisitorBilleAwt(Graphics graphics, CadreAngryBalls cadre) {
 		this.graphics = graphics;
+		this.cadre = cadre;
 	}
 
 	@Override
@@ -35,6 +37,11 @@ public class VisitorBilleAwt implements VisitorBille{
 		graphics.fillOval( xMin, yMin, width, height);
 		graphics.setColor(Color.CYAN);
 		graphics.drawOval(xMin, yMin, width, height);
+	}
+
+	@Override
+	public double visitMaxWidth() {
+		return this.cadre.largeurBillard();
 	}
 
 }
