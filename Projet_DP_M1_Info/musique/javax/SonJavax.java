@@ -17,7 +17,7 @@ import musique.SonBref;
 import musique.SonBrefFantome;
 
 /**
- * contient, sous forme de tableau, un fragment de fichier audio  pr�t � �tre diffus� sur les hauts-parleurs
+ * contient, sous forme de tableau, un fragment de fichier audio  pret � etre diffuse sur les hauts-parleurs
  * la m�thode run d�finit comment est diffus� le son gr�ce aux param�tres (volume, balance, pitch)
  * 
  * la m�thode run factorise toutes les initialisations n�cessaires � la diffusion du son.
@@ -172,8 +172,8 @@ public abstract class SonJavax implements Runnable
 		System.out.println(" nombre de canaux : "+format.getChannels());
 		System.out.println(" nombre de frames par seconde : "+format.getFrameRate());
 		System.out.println(" taille d'un frame en octets : "+format.getFrameSize());
-		System.out.println(" fr�quence d'�chantillonnage : "+format.getSampleRate());
-		System.out.println(" taille d'un �chantillon en bits : "+format.getSampleSizeInBits());
+		System.out.println(" frequence d'echantillonnage : "+format.getSampleRate());
+		System.out.println(" taille d'un echantillon en bits : "+format.getSampleSizeInBits());
 		System.out.println("format.isBigEndian() : " + format.isBigEndian());
 
 		//-------------------- on calcule le nombre d'octets � extraire du fichier son ---------------------
@@ -234,7 +234,7 @@ public abstract class SonJavax implements Runnable
 
 		catch (IllegalArgumentException e)
 		{
-			System.err.println("r�glage \"balance\" gauche - droite non disponible pour le fichier son utilis� : enregistrement non st�r�o ?");
+			System.err.println("reglage \"balance\" gauche - droite non disponible pour le fichier son utilise : enregistrement non stereo ?");
 			controleBalance = new FloatControlFantome();
 		}
 
@@ -253,7 +253,7 @@ public abstract class SonJavax implements Runnable
 
 		//System.out.println("la ligne a d�marr�");
 		if (this.tampon == null) 
-			throw new ArrayIndexOutOfBoundsException("le tampon n'a pas �t� cr��");
+			throw new ArrayIndexOutOfBoundsException("le tampon n'a pas ete cree");
 
 		this.ligne.start();
 
@@ -263,18 +263,18 @@ public abstract class SonJavax implements Runnable
 	}                               // run
 
 	/**
-	 * r�alise le d�tail de la diffusion. cf. classe SonBrefJavax par exemple 
+	 * realise le detail de la diffusion. cf. classe SonBrefJavax par exemple 
 	 * 
-	 * Les param�tres de type FloatControl servent � param�trer le volume, la balnce et le pitch
+	 * Les parametres de type FloatControl servent � parametrer le volume, la balnce et le pitch
 	 * 
-	 * volume, balance et coeffPitch ne sont pas des attributs intrins�ques de la classe. Ils peuvent �tre mis � jour par les classes d�riv�es lors de 
+	 * volume, balance et coeffPitch ne sont pas des attributs intrinseques de la classe. Ils peuvent etre mis � jour par les classes derivees lors de 
 	 * chaque diffusion. cf. classe SonBrefJavax
 	 * 
 	 * */
 	protected abstract void run1(FloatControl controleVolume, FloatControl controleBalance, FloatControl controlePitch, double gainMin, double gainMax);
 
 	/**
-	 * pour lancer, dans un thread s�par�, la diffusion du son
+	 * pour lancer, dans un thread separe, la diffusion du son
 	 * 
 	 * 
 	 * */

@@ -13,7 +13,7 @@ public class Colors {
 	public static String GREEN = "#6B9380";
 	public static String BLACK = "#000000";
 	public static String ORANGE = "#D86732";
-	public static String ROSE = "#F0A56E";
-	
-
+	public static String ROSE = "#E16EF0";
+	public static String VIOLET = "#8A2BE2";
+	public static String BROWN = "#8B4513";
 }

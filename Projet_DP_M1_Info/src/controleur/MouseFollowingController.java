@@ -30,7 +30,7 @@ public class MouseFollowingController extends ControllerState{
 		//Step 2 - Normalisation du vecteur a 1
 		acceleration = acceleration.produit(1/Math.sqrt(Math.pow(acceleration.x, 2)+Math.pow(acceleration.y, 2)));
 		//Step 3 - Constante d'acceleration : La bille suit la souris plus ou moins rapidement
-		acceleration = acceleration.produit(0.01);
+		acceleration = acceleration.produit(0.05);
 		System.out.println("acc = "+acceleration);
 		
 		return acceleration;

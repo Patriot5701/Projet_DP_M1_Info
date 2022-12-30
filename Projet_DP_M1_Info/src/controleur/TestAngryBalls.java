@@ -7,6 +7,7 @@ import mesmaths.geometrie.base.Vecteur;
 import modele.Bille;
 import modele.BillePilotee;
 import modele.BilleSimple;
+import modele.CollisionBordBlocage;
 import modele.CollisionBordFranchissement;
 import modele.CollisionBordRebond;
 import modele.Colors;
@@ -66,13 +67,14 @@ public class TestAngryBalls
 
 
 		double xMax, yMax;
-		double vMax = 0.1;
+		double vMax = 5;
 		xMax = cadre.largeurBillard();      // abscisse maximal
 		yMax = cadre.hauteurBillard();      // ordonnee maximale
 
-		//double rayon = 0.05*Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
-		double rayon = 20;
-		Vecteur p0, p1, p2, p3, p4, p5,  v0, v1, v2, v3, v4;    // les positions des centres des billes et les vecteurs vitesse au demarrage. 
+		double rayon = 0.05*Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
+		//double rayon = 20;
+		double rayonBilleNoire = 17;
+		Vecteur p0, p1, p2, p3, p4, p5,  v0, v1, v2, v3, v4, v5;    // les positions des centres des billes et les vecteurs vitesse au demarrage. 
 		// Elles vont etre choisies aleatoirement
 
 		//------------------- creation des vecteurs position des billes ---------------------------------
@@ -82,6 +84,7 @@ public class TestAngryBalls
 		p2 = Vecteur.creationAleatoire(0, 0, xMax, yMax);
 		p3 = Vecteur.creationAleatoire(0, 0, xMax, yMax);
 		p4 = Vecteur.creationAleatoire(0, 0, xMax, yMax);
+		p5 = Vecteur.creationAleatoire(0, 0, xMax, yMax);
 
 		//------------------- creation des vecteurs vitesse des billes ---------------------------------
 
@@ -90,15 +93,16 @@ public class TestAngryBalls
 		v2 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
 		v3 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
 		v4 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
+		v5 = Vecteur.creationAleatoire(-vMax, -vMax, vMax, vMax);
 		
-		Vecteur centreBillepilotee = new Vecteur(300,140);
-		Vecteur centreBille1 = new Vecteur(20,100);
+		Vecteur centreBillepilotee = new Vecteur(300,160);
+		Vecteur centreBille1 = new Vecteur(20,120);
 		
-		Vecteur centreBille2 = new Vecteur(20,140);
-		Vecteur centreBille3 = new Vecteur(20,180);
-		Vecteur centreBille4 = new Vecteur(60,120);
-		Vecteur centreBille5 = new Vecteur(60,160);
-		Vecteur centreBille6 = new Vecteur(100,140);
+		Vecteur centreBille2 = new Vecteur(20,160);
+		Vecteur centreBille3 = new Vecteur(20,200);
+		Vecteur centreBille4 = new Vecteur(60,140);
+		Vecteur centreBille5 = new Vecteur(60,180);
+		Vecteur centreBille6 = new Vecteur(100,160);
 		
 		Vecteur vitesseBille = new Vecteur (0,0);
 		Vecteur vitesseBille1 = new Vecteur (0,0);
@@ -111,54 +115,72 @@ public class TestAngryBalls
 
 		VisitorBille visitor = new VisitorBilleAwt(cadre.getGraphics(), cadre);
 
-		Bille billePilotee = new BilleSimple(centreBillepilotee, rayon, vitesseBille, Colors.BLACK, visitor);
-		//Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.BLACK,xMax);
+		Bille billePilotee = new BilleSimple(centreBillepilotee, rayonBilleNoire, vitesseBille, Colors.BLACK, visitor);
+		//Bille billePilotee = new BilleSimple(p0, rayon, v0, Colors.BLACK, visitor);
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
+		billePilotee = new MvmtFrottements(billePilotee);
 		//billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
 
 		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille1, Colors.RED, visitor);
 		bille1 = new CollisionBordRebond(bille1);
+		bille1 = new MvmtFrottements(bille1);
 		Bille bille2 = new BilleSimple(centreBille2, rayon, vitesseBille2, Colors.BLUE, visitor);
 		bille2 = new CollisionBordRebond(bille2);
+		bille2 = new MvmtFrottements(bille2);
 		Bille bille3 = new BilleSimple(centreBille3, rayon, vitesseBille3, Colors.GREEN, visitor);
 		bille3 = new CollisionBordRebond(bille3);
+		bille3 = new MvmtFrottements(bille3);
 		Bille bille4 = new BilleSimple(centreBille4, rayon, vitesseBille4, Colors.YELLOW, visitor);
 		bille4 = new CollisionBordRebond(bille4);
+		bille4 = new MvmtFrottements(bille4);
 		Bille bille5 = new BilleSimple(centreBille5, rayon, vitesseBille5, Colors.ROSE, visitor);
 		bille5 = new CollisionBordRebond(bille5);
+		bille5 = new MvmtFrottements(bille5);
 		Bille bille6 = new BilleSimple(centreBille6, rayon, vitesseBille6, Colors.CYAN, visitor);
 		bille6 = new CollisionBordRebond(bille6);
+		bille6 = new MvmtFrottements(bille6);
 		
 		
 		
-		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE, visitor);
-		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
-		billeRepulsionRebond = new CollisionBordRebond(billeRepulsionRebond);
-		billeRepulsionRebond = new Hurlement(billeRepulsionRebond,hurlements[choixHurlementInitial]);
+//		Bille billeRepulsionRebond = new BilleSimple(p4, rayon, v4, Colors.ORANGE, visitor);
+//		billeRepulsionRebond = new MvmtRepulsionNewton(billeRepulsionRebond);
+//		billeRepulsionRebond = new CollisionBordRebond(billeRepulsionRebond);
 		
-		Bille billePesanteurFrottementRebond = new BilleSimple(p1, rayon, v1, Colors.YELLOW, visitor);
+		Bille BilleMvtRURebond = new BilleSimple(p1, rayon, v1, Colors.RED, visitor);
+		BilleMvtRURebond = new CollisionBordRebond(BilleMvtRURebond);
+		
+		Bille billePesanteurFrottementRebond = new BilleSimple(p3, rayon, v3, Colors.YELLOW, visitor);
 		billePesanteurFrottementRebond = new MvmtAttractionPesanteur(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new MvmtFrottements(billePesanteurFrottementRebond);
 		billePesanteurFrottementRebond = new CollisionBordRebond(billePesanteurFrottementRebond);
 		
-		Bille billeNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN, visitor);
-		billeNewtonFrottementRebond = new MvmtAttractionNewton(billeNewtonFrottementRebond);
-		billeNewtonFrottementRebond = new MvmtFrottements(billeNewtonFrottementRebond);
-		billeNewtonFrottementRebond = new CollisionBordRebond(billeNewtonFrottementRebond);
+		Bille billeMvtNewtonFrottementRebond = new BilleSimple(p2, rayon, v2, Colors.GREEN, visitor);
+		billeMvtNewtonFrottementRebond = new MvmtAttractionNewton(billeMvtNewtonFrottementRebond);
+		billeMvtNewtonFrottementRebond = new MvmtFrottements(billeMvtNewtonFrottementRebond);
+		billeMvtNewtonFrottementRebond = new CollisionBordRebond(billeMvtNewtonFrottementRebond);
 		
-		Bille billePasseMurailles = new BilleSimple(p3, rayon, v3, Colors.CYAN, visitor);
+		Bille billePasseMurailles = new BilleSimple(p5, rayon, v5, Colors.BLUE, visitor);
 		billePasseMurailles = new CollisionBordFranchissement(billePasseMurailles);
-		billePasseMurailles = new Hurlement(billePasseMurailles,hurlements[choixHurlementInitial]);
 		
-		billes.add(billePilotee);
-		billes.add(bille1);
-		billes.add(bille2);
-		billes.add(bille3);
-		billes.add(bille4);
-		billes.add(bille5);
-		billes.add(bille6);
+		Bille billeHurlanteMvtNewtonArret  = new BilleSimple(p4, rayon, v4, Colors.BLACK, visitor);
+		billeHurlanteMvtNewtonArret = new MvmtAttractionNewton(billeHurlanteMvtNewtonArret);
+		billeHurlanteMvtNewtonArret = new CollisionBordBlocage(billeHurlanteMvtNewtonArret);
+		billeHurlanteMvtNewtonArret = new Hurlement(billeHurlanteMvtNewtonArret,hurlements[choixHurlementInitial]);
+		
+//		billes.add(billePilotee);
+//		billes.add(bille1);
+//		billes.add(bille2);
+//		billes.add(bille3);
+//		billes.add(bille4);
+//		billes.add(bille5);
+//		billes.add(bille6);
 		//billes.add(billeRepulsionRebond);
+		billes.add(BilleMvtRURebond);
+		billes.add(billeMvtNewtonFrottementRebond);
+		billes.add(billePesanteurFrottementRebond);
+		billes.add(billeHurlanteMvtNewtonArret);
+		billes.add(billePasseMurailles);
 		
 
 		
@@ -185,14 +207,14 @@ public class TestAngryBalls
 
 		EcouteurBoutonLancer ecouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
 		EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles); 
-		//EcouteurHurlement ecouteurHurlement = new EcouteurHurlement((Hurlement) billePilotee);
+		EcouteurHurlement ecouteurHurlement = new EcouteurHurlement((Hurlement) billeHurlanteMvtNewtonArret);
 
 		//------------------------- activation des ecouteurs des boutons et ca tourne tout seul ------------------------------
 
 
 		cadre.lancerBilles.addActionListener(ecouteurBoutonLancer);             // pourrait etre remplace par Observable - Observer 
 		cadre.arreterBilles.addActionListener(ecouteurBoutonArreter);           // pourrait etre remplace par Observable - Observer
-		//cadre.addChoixHurlementListener(ecouteurHurlement);  // A present on peut changer le son de la bille qui hurle
+		cadre.addChoixHurlementListener(ecouteurHurlement);  // A present on peut changer le son de la bille qui hurle
 
 
 	}

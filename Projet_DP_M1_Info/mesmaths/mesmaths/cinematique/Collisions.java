@@ -1,18 +1,29 @@
 package mesmaths.cinematique;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
+
+import javax.SonBrefJavax;
 
 import mesmaths.MesMaths;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
+import modele.Bille;
+import modele.OutilsBilles;
+import musique.SonBref;
+import musique.SonBrefFantome;
 
 
 public class Collisions
 {
 
 	static double EPSILON = 1.0E-6;
+	private static final double COEFF_VOLUME = 1;  
+	private static File file = new File(""); // la ou la JVM est lancee : racine du projet
+	private static File repertoireSon = new File(file.getAbsoluteFile(),"src"+File.separatorChar+"bruits");
+	static SonBref sonBref;
 
 	/**
 	 * gestion de la collision avec traversement de la paroi (et reapparition sur le cote oppose) de la bille definie par (position) 
@@ -78,6 +89,21 @@ public class Collisions
 		double t[] = Collisions.arretSurBord(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
 		vitesse.x = t[0];
 		position.x = t[1];
+		try
+		{
+			sonBref = new SonBrefJavax(repertoireSon,"collision_bille_bille.wav",50,100);
+		}
+		catch (Exception e)
+		{
+			//System.err.println("son non créé");
+			System.err.println(e);
+			sonBref = new SonBrefFantome();
+		}
+		double n = vitesse.norme();
+		double y = Math.exp(-COEFF_VOLUME*n);
+		double volume = 1-y;
+		double balance = 0;
+		//sonBref.joue(volume, balance);
 	}
 
 	/**
@@ -101,6 +127,21 @@ public class Collisions
 		double t[] = Collisions.arretSurBord(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
 		vitesse.y = t[0];
 		position.y = t[1];
+		try
+		{
+			sonBref = new SonBrefJavax(repertoireSon,"collision_bille_bille.wav",50,100);
+		}
+		catch (Exception e)
+		{
+			//System.err.println("son non créé");
+			System.err.println(e);
+			sonBref = new SonBrefFantome();
+		}
+		double n = vitesse.norme();
+		double y = Math.exp(-COEFF_VOLUME*n);
+		double volume = 1-y;
+		double balance = 0;
+		//sonBref.joue(volume, balance);
 	}
 
 
@@ -175,7 +216,21 @@ public class Collisions
 		Vecteur deltaV = N.produit(-2*vN);  // calcul du changement de trajectoire
 
 		vitesse.ajoute(deltaV); // la bille rebondit
-
+		try
+		{
+			sonBref = new SonBrefJavax(repertoireSon,"collision_bille_bille.wav",50,100);
+		}
+		catch (Exception e)
+		{
+			//System.err.println("son non créé");
+			System.err.println(e);
+			sonBref = new SonBrefFantome();
+		}
+		double n = vitesse.norme();
+		double y = Math.exp(-COEFF_VOLUME*n);
+		double volume = 1-y;
+		double balance = 0;
+		sonBref.joue(volume, balance);
 		return true;
 
 	}                           // collisionBilleSegmentAvecRebond
@@ -220,12 +275,28 @@ public class Collisions
 		coins[2] = max;
 		coins[3] = new Vecteur(min.x, max.y);
 		coins[4] = coins[0];                    // pour refermer le contour !
-
+		try
+		{
+			//sonBref = new SonBrefJavax(repertoireSon,"collision_bille_bille.wav",0,100);
+			sonBref = new SonBrefJavax(repertoireSon,"collision_bille_bille.wav",50,100);
+		}
+		catch (Exception e)
+		{
+			//System.err.println("son non créé");
+			System.err.println(e);
+			sonBref = new SonBrefFantome();
+		}
+		double n = vitesse.norme();
+		double y = Math.exp(-COEFF_VOLUME*n);
+		double volume = 1-y;
+		double balance = 0;
+		
 		int i;
 		for ( i = 1; i < coins.length; ++i)
-			if (Collisions.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i])) 
+			if (Collisions.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i])) { 
+				sonBref.joue(volume, balance);
 				return true;
-
+			}
 		return false;
 	}
 

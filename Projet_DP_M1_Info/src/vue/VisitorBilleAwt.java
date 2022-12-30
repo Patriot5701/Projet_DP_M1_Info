@@ -35,7 +35,7 @@ public class VisitorBilleAwt implements VisitorBille{
 
 		graphics.setColor(Color.decode(bille.getColor()));
 		graphics.fillOval( xMin, yMin, width, height);
-		graphics.setColor(Color.CYAN);
+		graphics.setColor(Color.BLACK);
 		graphics.drawOval(xMin, yMin, width, height);
 	}
 

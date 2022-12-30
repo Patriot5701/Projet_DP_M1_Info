@@ -11,4 +11,3 @@ spitfire 1100 1700 30
 sabrelaser 0 150 15
 loups 0 600 40
 crapaud 20 120 10
-impact 0 100 10
