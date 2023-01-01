@@ -24,15 +24,6 @@ public class MvmtAttractionNewton extends DecorateurBille{
 		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes));     // contribution de l'acceleration due a l'attraction des autres billes
 	}
 
-	
-	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : attirée par les autres billes";
-	}
-
-
-
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
 			double hauteur) {

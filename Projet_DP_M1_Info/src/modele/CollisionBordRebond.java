@@ -24,10 +24,4 @@ public class CollisionBordRebond extends DecorateurBille{
 		Collisions.collisionBilleContourAvecRebond( this.getPosition(), this.getRayon(), this.getVitesse(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
 	}
 	
-	
-	@Override
-	public String toString() {
-		return billeDecoree.toString();
-	}
-
 }

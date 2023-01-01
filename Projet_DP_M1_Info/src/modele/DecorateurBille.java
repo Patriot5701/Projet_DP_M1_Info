@@ -81,4 +81,8 @@ public abstract class DecorateurBille extends Bille{
 		billeDecoree.gestionAcceleration(billes);
     }
 	
+	public String toString() {
+		return billeDecoree.toString();
+	}
+	
 }

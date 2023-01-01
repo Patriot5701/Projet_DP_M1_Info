@@ -36,11 +36,6 @@ public class BillePilotee extends DecorateurBille {
 		billeDecoree.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
 	}
 
-	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : attrapable";
-	}
 
 
 }

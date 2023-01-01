@@ -59,10 +59,4 @@ public class Hurlement extends DecorateurBille{
 		this.sonLong = bouton.sonLong;
 	}
 
-	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : bille hurlante";
-	}
-
 }

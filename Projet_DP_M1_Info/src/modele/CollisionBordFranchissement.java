@@ -28,11 +28,5 @@ public class CollisionBordFranchissement extends DecorateurBille{
 		Collisions.collisionBilleContourPasseMuraille( this.getPosition(), abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur);
 	}
 
-	@Override
-	public String toString() {
-		return billeDecoree.toString();
-	}
-
-
 
 }

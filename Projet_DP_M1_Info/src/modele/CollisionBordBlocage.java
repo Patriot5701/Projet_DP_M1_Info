@@ -23,14 +23,6 @@ public class CollisionBordBlocage extends DecorateurBille{
 		Collisions.collisionBilleContourAvecArretHorizontal(this.getPosition(), this.getRayon(), this.getVitesse(), abscisseCoinHautGauche, largeur);
 		Collisions.collisionBilleContourAvecArretVertical(this.getPosition(), this.getRayon(), this.getVitesse(), ordonneeCoinHautGauche, hauteur);
 	}
-	
-
-	@Override
-	public String toString() {
-		String message;
-		message = billeDecoree.toString();
-		return message;
-	}
 
 
 }

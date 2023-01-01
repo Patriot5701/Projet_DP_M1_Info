@@ -22,12 +22,6 @@ public class MvmtFrottements extends DecorateurBille{
 		this.getAcceleration().ajoute(MecaniquePoint.freinageFrottement(this.getMasse(), this.getVitesse()));     // contribution de l'acceleration due au frottement
 	}
 
-	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : freinage dû aux frottements dans l'air ";
-	}
-
 
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,

@@ -24,12 +24,6 @@ public class MvmtAttractionPesanteur extends DecorateurBille{
 		this.getAcceleration().ajoute(this.pesanteur);     // contribution de l'acceleration due a la pesanteur
 	}
 
-	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : attirée vers le bas";
-	}
-
 
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,

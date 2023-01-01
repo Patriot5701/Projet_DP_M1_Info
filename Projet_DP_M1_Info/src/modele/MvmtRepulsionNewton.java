@@ -23,13 +23,6 @@ public class MvmtRepulsionNewton extends DecorateurBille {
 		this.getAcceleration().ajoute(OutilsBilles.gestionAccelerationNewton(billeDecoree, billes).oppose());     // contribution de l'acceleration due a la repulsion des autres billes
 	}
 
-	@Override
-	public String toString() {
-		String str = billeDecoree.toString();
-		return str + ", Comportement : repousée par les autres billes";
-	}
-
-
 
 	@Override
 	public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur,
