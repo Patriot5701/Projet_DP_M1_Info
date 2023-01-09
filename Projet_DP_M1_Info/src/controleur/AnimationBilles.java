@@ -1,7 +1,6 @@
 package controleur;
 
 import java.util.Vector;
-
 import modele.Bille;
 import vue.VueBillard;
 

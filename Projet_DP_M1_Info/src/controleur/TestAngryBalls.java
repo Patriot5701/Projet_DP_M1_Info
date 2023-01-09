@@ -120,7 +120,6 @@ public class TestAngryBalls
 		billePilotee = new BillePilotee(billePilotee, cadre);
 		billePilotee = new CollisionBordRebond(billePilotee);
 		billePilotee = new MvmtFrottements(billePilotee);
-		//billePilotee = new Hurlement(billePilotee,cadre,hurlements[choixHurlementInitial]);
 
 		Bille bille1 = new BilleSimple(centreBille1, rayon, vitesseBille1, Colors.RED, visitor);
 		bille1 = new CollisionBordRebond(bille1);

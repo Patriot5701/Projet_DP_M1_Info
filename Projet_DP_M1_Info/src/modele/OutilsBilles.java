@@ -5,13 +5,11 @@ import java.util.Vector;
 
 import javax.SonBrefJavax;
 
-import controleur.OutilsConfigurationBilleHurlante;
 import mesmaths.cinematique.Collisions;
 import mesmaths.geometrie.base.Vecteur;
 import mesmaths.mecanique.MecaniquePoint;
 import musique.SonBref;
 import musique.SonBrefFantome;
-import musique.SonLong;
 
 /**
  * 

@@ -3,8 +3,6 @@ package modele;
 import java.util.Vector;
 import musique.SonLong;
 import vue.BoutonChoixHurlement;
-import vue.CadreAngryBalls;
-import vue.VisitorBille;
 
 /**
  * Comportement ajoutant le hurlement
